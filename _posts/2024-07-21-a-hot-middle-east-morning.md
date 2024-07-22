@@ -7,7 +7,8 @@ tags: [lst, temperature, europe, mediterranean]
 
 This land surface temperature (LST) image was acquired on June 12, 2024, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
-![Sentinel-3 LST](\assets\img\a-hot-middle-east-morning\Middle_East_S3B_LST_20240612_v1.jpeg)
+![Sentinel-3 LST](\assets\img\a-hot-middle-east-morning\Middle_East_S3B_LST_20240612_v1.jpeg){: width="700" height="400" }
+_Sentinel-3_
 
 In many areas, the LST exceeds 60 degrees Celsius. As expected, water bodies, mountainous regions, and coastal areas have lower temperatures.
 

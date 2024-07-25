@@ -8,8 +8,8 @@ comments: true
 
 This land surface temperature (LST) image was acquired on June 12, 2024, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
-![Sentinel-3 LST](/assets/img/a-hot-middle-east-morning/Middle_East_S3B_LST_20240612_v1.jpeg)
-_Sentinel-3_
+![Sentinel-3 LST](https://media.licdn.com/dms/image/D4D12AQGdFg1AaUXP_g/article-inline_image-shrink_1500_2232/0/1718258448324?e=1727308800&v=beta&t=trL3rSkPFcQ7rKZeSaBkrznq8HQ2TCR6GNMLlMhfE4E)
+_LST of the Middle East, 12 June 2024, 10:50 am local time. Credits: Copernicus Sentinel-3_
 
 In many areas, the LST exceeds 60 degrees Celsius. As expected, water bodies, mountainous regions, and coastal areas have lower temperatures.
 
@@ -20,7 +20,11 @@ LST can fluctuate more dramatically than AT. For example, on a sunny day, land s
 
 The table below shows the differences between LST and AT at selected locations visible on the map.
 
-![]
+![ESRI basemap - locations](https://media.licdn.com/dms/image/D4D12AQETfDj_jMw5Zw/article-inline_image-shrink_1500_2232/0/1718283272873?e=1727308800&v=beta&t=G_JuJdNPzUGFdYVT6V6CYXU6ONSXlYCEp_vUZQ4Hzq4)
+_Satellite composite image of the Middle East countries. Credits: ESRI satellite base map_
+
+![AT vs LST readings](https://media.licdn.com/dms/image/D4D12AQEokxeg4lbK5w/article-inline_image-shrink_1500_2232/0/1718283545833?e=1727308800&v=beta&t=gaUIazqR4IbtQP8PNVFWnzU480i3Zs5952cNspZ6-2A)
+
 
 ### Things to Consider When Interpreting LST Maps:
 

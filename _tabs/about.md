@@ -11,7 +11,7 @@ Thank you for visiting my page.
 My name is Manos, and I am a remote sensing specialist with __over 12 years__ of professional experience in the geospatial domain.
 
 For the majority of my career, I have worked with the __European Space Agency (ESA)__, delivering high-quality data visualizations to a wide audience through the Agency’s outreach channels. 
->The mindmap below summarizes my journey so far.
+>The interactive mindmap below summarizes my journey so far.
 
 ## In a nutshell 
 <div><iframe width="600" height="400" frameBorder="0" src="https://www.mindmeister.com/maps/public_map_shell/3371135807/manos?width=600&height=400&z=auto&live_update=1&no_share=1&no_logo=1" scrolling="no" style="overflow:hidden;margin-bottom:5px">Your browser is not able to display frames. Please visit <a href="https://www.mindmeister.com/3371135807/manos" target="_blank">Manos</a> on MindMeister.</iframe></div>

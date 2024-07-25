@@ -6,7 +6,7 @@ tags: [lst, temperature, europe, mediterranean]
 comments: true
 ---
 
-This land surface temperature (LST) image was acquired on June 12, 2024, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
+This land surface temperature (LST) image was acquired on **June 12, 2024**, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
 ![Sentinel-3 LST](https://media.licdn.com/dms/image/D4D12AQGdFg1AaUXP_g/article-inline_image-shrink_1500_2232/0/1718258448324?e=1727308800&v=beta&t=trL3rSkPFcQ7rKZeSaBkrznq8HQ2TCR6GNMLlMhfE4E)
 _LST of the Middle East, 12 June 2024, 10:50 am local time. Credits: Copernicus Sentinel-3_

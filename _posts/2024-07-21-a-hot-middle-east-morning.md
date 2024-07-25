@@ -3,6 +3,7 @@ title: A Hot Middle East Morning
 date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
+comments: true
 ---
 
 This land surface temperature (LST) image was acquired on June 12, 2024, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.

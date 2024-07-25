@@ -38,11 +38,11 @@ social:
   email: manoslag@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
+    - https://www.linkedin.com/in/lagoudakis/ # change to your linkedin homepage
     - https://x.com/MLagoudakis # change to your twitter homepage
     - https://github.com/elagoudakis # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/lagoudakis/
 
 # Site Verification Settings
 webmaster_verifications:
@@ -110,7 +110,7 @@ comments:
   provider: # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
-    shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+    shortname: digital-scape # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances settings › https://utteranc.es/
   utterances:
     repo: # <gh-username>/<repo>

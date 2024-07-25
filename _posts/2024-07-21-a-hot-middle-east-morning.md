@@ -1,6 +1,7 @@
 ---
 title: A Hot Middle East Morning
 date: 2024-07-21 19:12:00 +0200
+comments: True
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
 ---
@@ -32,6 +33,29 @@ The table below shows the differences between LST and AT at selected locations v
 
 LST quantifies the energy emitted by the ground at the time of image acquisition. It can also indicate perceived heat and potential discomfort, but it's not the same as AT and should be used with a clear disclaimer. Combining LST and AT data can help us understand how we experience heat and heatwaves in a warming world.
 
-**Disclaimer:** This is a personal account. All views are my own.
-
 **Credits:** Copernicus Sentinel-3 for the LST data and Esri for the satellite base map
+
+
+{% if page.comments %}
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://digital-scape.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+{% endif %}

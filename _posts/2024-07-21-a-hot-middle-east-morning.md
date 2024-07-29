@@ -3,6 +3,9 @@ title: A Hot Middle East Morning
 date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
+image:
+  path: \assets\img\a-hot-middle-east-morning\Middle_East_S3B_LST_20240612_v1_banner.jpg
+  alt: relationship between LST and landscape features
 comments: true
 ---
 
@@ -24,9 +27,6 @@ LST can fluctuate more dramatically than AT. For example, on a sunny day, land s
 
 The table below shows the differences between LST and AT at selected locations visible on the map.
 
-![ESRI basemap - locations](https://media.licdn.com/dms/image/D4D12AQETfDj_jMw5Zw/article-inline_image-shrink_1500_2232/0/1718283272873?e=1727308800&v=beta&t=G_JuJdNPzUGFdYVT6V6CYXU6ONSXlYCEp_vUZQ4Hzq4)
-_Satellite composite image of the Middle East countries. Credits: ESRI satellite base map_
-
 ![AT vs LST readings](https://media.licdn.com/dms/image/D4D12AQEokxeg4lbK5w/article-inline_image-shrink_1500_2232/0/1718283545833?e=1727308800&v=beta&t=gaUIazqR4IbtQP8PNVFWnzU480i3Zs5952cNspZ6-2A)
 
 
@@ -40,6 +40,8 @@ _Satellite composite image of the Middle East countries. Credits: ESRI satellite
 ###  **The Bottom Line:**
 
 LST quantifies the energy emitted by the ground at the time of image acquisition. It can also indicate perceived heat and potential discomfort, but it's not the same as AT and should be used with a clear disclaimer. Combining LST and AT data can help us understand how we experience heat and heatwaves in a warming world.
+
+This article was also posted on my [__Linkedin__](https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos-lagoudakis-2oekf/?trackingId=LUxMceQwTOqOoecJXAkrig%3D%3D) account.
 
 **Credits:** Copernicus Sentinel-3 for the LST data and Esri for the satellite base map
 

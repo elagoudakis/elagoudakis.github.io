@@ -4,7 +4,7 @@ date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
 image:
-  path: /assets/img/a-hot-middle-east-morning\Middle_East_S3B_LST_20240612_v1_banner.jpg
+  path: /assets/img/a-hot-middle-east-morning/Middle_East_S3B_LST_20240612_v1_banner.jpg
   alt: relationship between LST and landscape features
 comments: true
 ---

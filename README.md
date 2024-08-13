@@ -3,9 +3,11 @@
 
 [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
 
-Welcome to dscape. DScape stands for Digital Scape and is a personal project. A digital repository that contains samples of my work, interesting shares and general thoughts.
+Welcome to DScape, short for Digital Scape, a personal project and digital repository where I showcase my work and explore various topics within the geospatial domain. You'll also find the occasional post where I share my thoughts on subjects that spark my personal interest.
 
 You can visit it here: **https://dscape.gr**
+
+You can expect a new post every month. 
 
 It follows the structure below:
 

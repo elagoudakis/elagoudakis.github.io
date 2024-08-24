@@ -21,4 +21,7 @@ _Average CO concentration from Sentinel-5P for July 2021-2024. Credits: Copernic
 📖 CO is an important atmospheric trace gas for understanding tropospheric chemistry. Main sources of CO are combustion of fossil fuels, biomass burning, and atmospheric oxidation of methane and other hydrocarbons. 
 TROPOMI on the S5P satellite observes the CO global abundance exploiting clear-sky and cloudy-sky Earth radiance measurements in the 2.3 μm spectral range of the shortwave infrared (SWIR) part of the solar spectrum.
 
-Credits: Copernicus Sentinel-5P
+This article was also posted on my [__Linkedin__](https://www.linkedin.com/posts/lagoudakis_the-historic-2024-fire-season-the-activity-7224835150705025025-40OF?utm_source=share&utm_medium=member_desktop) account.
+
+
+**Credits:** Copernicus Sentinel-5P

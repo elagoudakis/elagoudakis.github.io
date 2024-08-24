@@ -3,14 +3,11 @@
 icon: fas fa-info-circle
 order: 4
 ---
-
-## Hi! 
-
 ## What 
 
 __DScape__ stands for __Digital Scape__ - a digital representation of what's happening around us.
 
-**DScape** is the realization of a personal project.
+DScape is the realization of a personal project.
 
 In this digital repo, expect to find a variety of content, including __visual samples of my work__, __quick tutorials__, __interesting shares__, and information relevant to the geospatial ecosystem. Additionally, I occasionally post __personal thoughts__ on general topics.
 
@@ -20,7 +17,7 @@ The (initial) plan is to publish something new every month.
 
 ## Who
 
-My name is Manos, and I am a remote sensing specialist with __over 12 years__ of professional experience in the geospatial domain.
+My name is Manos, and I am a remote sensing specialist with over 12 years of professional experience in the geospatial domain.
 
 For the majority of my career, I have worked with the __European Space Agency (ESA)__, delivering high-quality data visualizations to a wide audience through the Agency’s outreach channels.
 

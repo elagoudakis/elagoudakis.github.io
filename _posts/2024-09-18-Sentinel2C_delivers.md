@@ -5,7 +5,7 @@ categories: [Sentinel-2]
 tags: [forest, fire, sentinel2, disaster, Spain, France, firstlight, first, MSI, multispectral]
 image:
   path: /assets/img/S2C_delivers/S2C_first_light_banner.jpg
-  alt: Sentinel-2C delivers first images less than 2 weeks after launch
+  alt: Sentinel-2C delivers the first images less than 2 weeks after launch. Here, the famous Great Blue Hole in Belize.
 comments: true
 ---
 
@@ -27,7 +27,9 @@ A second image depicts a data strip extending from Avignon in southern France to
 ![Sentinel-2C](https://media.licdn.com/dms/image/v2/D4D22AQGTkZtMrCY9-w/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1726646009047?e=1729728000&v=beta&t=MBXkheOrTbOFYb_b_25-Aaw1ORKKqBlIS9uVlAtE3Ec)
 _Part of a Sentinel-2C strip extending from Avignon in southern France to the Ebro Delta in Spain. Credits: Copernicus Sentinel-2_
 
-For more images and information, refer to the ESA website [__here__](https://shorturl.at/XtaQQ). 
+It is remarkable that the instrument is already performing exceptionally well even before receiving in-orbit calibration.
+
+Other images include a spectacular view of the Lighthouse Reef in Belize and a part of Andalusia in Spain. To view these and for more information on the mission, refer to the ESA website [__here__](https://shorturl.at/XtaQQ). 
 
 
 This article was also posted on my [__Linkedin__](https://www.linkedin.com/posts/lagoudakis_sentinel-2c-delivers-less-than-2-weeks-activity-7242078295578603520-Vikf?utm_source=share&utm_medium=member_desktop) account.

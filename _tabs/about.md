@@ -19,7 +19,7 @@ The (initial) plan is to publish something new every month.
 
 My name is Manos, and I am a remote sensing specialist with over 12 years of professional experience in the geospatial domain.
 
-For the majority of my career, I have worked with the __European Space Agency (ESA)__, delivering high-quality data visualizations to a wide audience through the Agency’s outreach channels.
+For the majority of my career, I have worked as an on-site contractor at the __European Space Agency (ESA)__, delivering high-quality data visualizations to a wide audience through the Agency’s outreach channels.
 
 
 >The mindmap below summarizes my journey so far. For the interactive, zoomable version, click on the image.

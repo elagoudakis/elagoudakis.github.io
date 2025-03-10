@@ -18,7 +18,7 @@ Fire pixels from the VIIRS instrument (Suomi-NPP satellite) have been overlaid t
 
 **Important**: The overlaid fire pixels represent data from the entire days, while the images are acquired in the mornings.
 
-![Sentinel-2](https://media.licdn.com/dms/image/v2/D4D22AQF7UMZpZyyDcQ/feedshare-shrink_800/feedshare-shrink_800/0/1724429737772?e=1727308800&v=beta&t=3QW0UjD7KhJSB4fAl0r-Wl2S2u0KD_2ObSKBd5jIofE)
+![Sentinel-2](https://media.licdn.com/dms/image/v2/D4D22AQF7UMZpZyyDcQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1724429738336?e=1744243200&v=beta&t=g4t1eob-oHPp_GbPUhGhNAsM3S8XBEOw3tIPQTpG7lQ)
 _Propagation of the forest fire between 17 and 20 August 2024. Credits: USGS/Copernicus Sentinel-2_
 
 📅 As of 23 August, the fire had burned more than 5,700 hectares (57 sq km).

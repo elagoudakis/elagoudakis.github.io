@@ -15,7 +15,7 @@ comments: true
 The animation below, utilizes data from the Copernicus Sentinel-5P (S5P) satellite, and illustrates the average carbon monoxide (CO) concentration around the Arctic Circle for July from 2021 to 2024. 
 The primary sources of emissions are located in the boreal forests of Canada—Alberta, northeastern British Columbia, southern Northwest Territories—and Russia, particularly Yakutia.
 
-![Sentinel-5P CO](https://media.licdn.com/dms/image/v2/D4D22AQEk-0YgGE6kSw/feedshare-shrink_800/feedshare-shrink_800/0/1722534928606?e=1726704000&v=beta&t=3xCmqqrMDv03Z_yB__dB6xp_kEwx25i8dNAvTnNVGHM)
+![Sentinel-5P CO](https://media.licdn.com/dms/image/v2/D4D22AQEk-0YgGE6kSw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1722534932242?e=1744243200&v=beta&t=4Yz1_sjYyqGDeNn5uiaSyoHERqc2hkM0NQv18xu5gx0)
 _Average CO concentration from Sentinel-5P for July 2021-2024. Credits: Copernicus Sentinel-5P_
 
 📖 CO is an important atmospheric trace gas for understanding tropospheric chemistry. Main sources of CO are combustion of fossil fuels, biomass burning, and atmospheric oxidation of methane and other hydrocarbons. 

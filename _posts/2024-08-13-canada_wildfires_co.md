@@ -3,6 +3,11 @@ title: The (historic?) 2024 fire season
 date: 2024-08-13 11:46:00 +0200
 categories: [Sentinel-5P]
 tags: [CO, arctic, canada, carbonmonoxide, S5P, airpollution]
+kind: snapshot
+acquired: "2021-07-01/2024-07-31"
+location: { name: "Arctic Circle: boreal Canada and Russia", lat: 62.0, lon: -115.0 }
+credit: "Contains modified Copernicus Sentinel data (2021-2024)"
+linkedin: https://www.linkedin.com/posts/lagoudakis_the-historic-2024-fire-season-the-activity-7224835150705025025-40OF
 image:
   path: /assets/img/air-pollution-canada/canada_wildfires_S3_May2024.jpg
   alt: air pollution due to Canada wildfires

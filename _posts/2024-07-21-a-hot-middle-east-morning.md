@@ -3,6 +3,11 @@ title: A Hot Middle East Morning
 date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
+kind: story
+acquired: "2024-06-12"
+location: { name: "Middle East", lat: 31.5, lon: 37.0 }
+credit: "Contains modified Copernicus Sentinel data (2024); base map: Esri"
+linkedin: https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos-lagoudakis-2oekf/
 image:
   path: /assets/img/a-hot-middle-east-morning/Middle_East_S3B_LST_20240612_v1_banner.jpg
   alt: relationship between LST and landscape features

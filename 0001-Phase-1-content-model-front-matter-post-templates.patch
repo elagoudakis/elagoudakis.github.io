@@ -1,0 +1,213 @@
+From 805b749c336e09a8eb0ea23c5cc6824e4a274595 Mon Sep 17 00:00:00 2001
+From: Manos Lagoudakis <manoslag@gmail.com>
+Date: Fri, 16 Oct 2026 12:19:35 +0000
+Subject: [PATCH] Phase 1: content model front matter, post templates
+
+---
+ _posts/2024-07-20-welcome.md                  |  1 +
+ .../2024-07-21-a-hot-middle-east-morning.md   |  5 ++++
+ _posts/2024-07-25-Global_Dust.md              | 12 +++++----
+ _posts/2024-08-13-canada_wildfires_co.md      |  5 ++++
+ _posts/2024-08-24-Madeira_fire.md             |  5 ++++
+ _posts/2024-09-18-Sentinel2C_delivers.md      |  5 ++++
+ docs/CONTENT-MODEL.md                         | 17 ++++++++++++
+ docs/templates/snapshot.md                    | 21 +++++++++++++++
+ docs/templates/story.md                       | 27 +++++++++++++++++++
+ 9 files changed, 93 insertions(+), 5 deletions(-)
+ create mode 100644 docs/CONTENT-MODEL.md
+ create mode 100644 docs/templates/snapshot.md
+ create mode 100644 docs/templates/story.md
+
+diff --git a/_posts/2024-07-20-welcome.md b/_posts/2024-07-20-welcome.md
+index bbb32d5..dd79116 100644
+--- a/_posts/2024-07-20-welcome.md
++++ b/_posts/2024-07-20-welcome.md
+@@ -3,6 +3,7 @@ title: Hello World!
+ date: 2024-07-20 16:38:00 +0200
+ categories: [personal]
+ tags: [personal, blogging]
++kind: story
+ ---
+ 
+ # Hello World :)
+diff --git a/_posts/2024-07-21-a-hot-middle-east-morning.md b/_posts/2024-07-21-a-hot-middle-east-morning.md
+index 4203234..1bd0183 100644
+--- a/_posts/2024-07-21-a-hot-middle-east-morning.md
++++ b/_posts/2024-07-21-a-hot-middle-east-morning.md
+@@ -3,6 +3,11 @@ title: A Hot Middle East Morning
+ date: 2024-07-21 19:12:00 +0200
+ categories: [Sentinel-3]
+ tags: [lst, temperature, europe, mediterranean]
++kind: story
++acquired: "2024-06-12"
++location: { name: "Middle East", lat: 31.5, lon: 37.0 }
++credit: "Contains modified Copernicus Sentinel data (2024); base map: Esri"
++linkedin: https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos-lagoudakis-2oekf/
+ image:
+   path: /assets/img/a-hot-middle-east-morning/Middle_East_S3B_LST_20240612_v1_banner.jpg
+   alt: relationship between LST and landscape features
+diff --git a/_posts/2024-07-25-Global_Dust.md b/_posts/2024-07-25-Global_Dust.md
+index f276acb..8133f75 100644
+--- a/_posts/2024-07-25-Global_Dust.md
++++ b/_posts/2024-07-25-Global_Dust.md
+@@ -1,11 +1,13 @@
+ ---
+-title: and yet again
++title: And yet again
+ date: 2024-07-25 16:30:00 +0200
+ categories: [CAMS]
+ tags: [dust, cloud, aod, model, forecast, calimas, greece, saharan, desert]
+-image:
+-  path: /assets/img/madeira/Madeira_S2_20240820.jpg
+-  alt: August 2024 forest fire in Madeira, Portugal
++kind: snapshot
++acquired: "2024-06-14/2024-06-24"
++location: { name: "North Africa and Europe", lat: 40.0, lon: 15.0 }
++credit: "Generated using Copernicus Atmosphere Monitoring Service information (2024)"
++linkedin: https://www.linkedin.com/posts/lagoudakis_and-yet-again-the-animation-below-shows-activity-7211356947743182849-nj3d
+ comments: true
+ ---
+ 
+@@ -17,7 +19,7 @@ This is the seventh(?) episode since December between Calimas and Med dust cloud
+ 📅 The CAMS aerosol optical depth (AOD) forecast data between 14 and 24 June 2024 show a very strong dust plume (AOD > 1) leaving the coasts of North Africa and covering big parts of central and eastern Europe. The event was followed with high air temperatures that exceeded 40 deg Celsius in southern Italy.
+ 
+ 
+-![Sentinel-2](https://media.licdn.com/dms/image/v2/D4D22AQHaPJZ-pfJuXA/feedshare-shrink_800/feedshare-shrink_800/0/1719321474059?e=1744243200&v=beta&t=kKfyVCS4nuvT445tfaY3UNSq5e3y7q4lWHCVgFSr0RY)
++![CAMS dust AOD forecast animation](https://media.licdn.com/dms/image/v2/D4D22AQHaPJZ-pfJuXA/feedshare-shrink_800/feedshare-shrink_800/0/1719321474059?e=1744243200&v=beta&t=kKfyVCS4nuvT445tfaY3UNSq5e3y7q4lWHCVgFSr0RY)
+ _Propagation of the big dust cloud between 14 and 24 June 2024. Credits: CAMS_
+ 
+ 
+diff --git a/_posts/2024-08-13-canada_wildfires_co.md b/_posts/2024-08-13-canada_wildfires_co.md
+index 9996d32..d9971c3 100644
+--- a/_posts/2024-08-13-canada_wildfires_co.md
++++ b/_posts/2024-08-13-canada_wildfires_co.md
+@@ -3,6 +3,11 @@ title: The (historic?) 2024 fire season
+ date: 2024-08-13 11:46:00 +0200
+ categories: [Sentinel-5P]
+ tags: [CO, arctic, canada, carbonmonoxide, S5P, airpollution]
++kind: snapshot
++acquired: "2021-07-01/2024-07-31"
++location: { name: "Arctic Circle: boreal Canada and Russia", lat: 62.0, lon: -115.0 }
++credit: "Contains modified Copernicus Sentinel data (2021-2024)"
++linkedin: https://www.linkedin.com/posts/lagoudakis_the-historic-2024-fire-season-the-activity-7224835150705025025-40OF
+ image:
+   path: /assets/img/air-pollution-canada/canada_wildfires_S3_May2024.jpg
+   alt: air pollution due to Canada wildfires
+diff --git a/_posts/2024-08-24-Madeira_fire.md b/_posts/2024-08-24-Madeira_fire.md
+index 851b3ef..3eb1d6a 100644
+--- a/_posts/2024-08-24-Madeira_fire.md
++++ b/_posts/2024-08-24-Madeira_fire.md
+@@ -3,6 +3,11 @@ title: Devastating fire in Madeira, Portugal
+ date: 2024-08-24 16:30:00 +0200
+ categories: [Sentinel-2]
+ tags: [forest, fire, sentinel2, landsat, disaster, portugal, madeira]
++kind: snapshot
++acquired: "2024-08-17/2024-08-20"
++location: { name: "Madeira, Portugal", lat: 32.75, lon: -17.0 }
++credit: "USGS / Contains modified Copernicus Sentinel data (2024); active fires: VIIRS (Suomi-NPP)"
++linkedin: https://www.linkedin.com/posts/lagoudakis_a-large-forest-fire-broke-out-in-madeira-activity-7232782552351072256-wbIq
+ image:
+   path: /assets/img/madeira/Madeira_S2_20240820.jpg
+   alt: August 2024 forest fire in Madeira, Portugal
+diff --git a/_posts/2024-09-18-Sentinel2C_delivers.md b/_posts/2024-09-18-Sentinel2C_delivers.md
+index 6032bf8..88dd3dd 100644
+--- a/_posts/2024-09-18-Sentinel2C_delivers.md
++++ b/_posts/2024-09-18-Sentinel2C_delivers.md
+@@ -3,6 +3,11 @@ title: Sentinel-2C delivers
+ date: 2024-09-18 11:53:00 +0200
+ categories: [Sentinel-2]
+ tags: [forest, fire, sentinel2, disaster, Spain, France, firstlight, first, MSI, multispectral]
++kind: story
++acquired: "2024-09-12/2024-09-14"
++location: { name: "Los Angeles, USA", lat: 33.7, lon: -117.5 }
++credit: "Contains modified Copernicus Sentinel data (2024)"
++linkedin: https://www.linkedin.com/posts/lagoudakis_sentinel-2c-delivers-less-than-2-weeks-activity-7242078295578603520-Vikf
+ image:
+   path: /assets/img/S2C_delivers/S2C_first_light_banner.jpg
+   alt: Sentinel-2C delivers the first images less than 2 weeks after launch. Here, the famous Great Blue Hole in Belize.
+diff --git a/docs/CONTENT-MODEL.md b/docs/CONTENT-MODEL.md
+new file mode 100644
+index 0000000..5cdb525
+--- /dev/null
++++ b/docs/CONTENT-MODEL.md
+@@ -0,0 +1,17 @@
++# DScape content model
++
++Every post uses the same front matter, so the homepage grid, filters and maps can be built from it.
++Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`.
++
++| Field | Required | Meaning |
++| --- | --- | --- |
++| `kind` | yes | `snapshot` (one image + short caption) or `story` (short blog post) |
++| `categories` | yes | Primary mission or data source, one value (Sentinel-2, CAMS, ...) |
++| `tags` | yes | Topics, places, secondary missions |
++| `image` | yes* | Thumbnail for the grid and social preview (`path`, `alt`). *Missing = site default |
++| `acquired` | EO posts | Acquisition date `"YYYY-MM-DD"` or range `"YYYY-MM-DD/YYYY-MM-DD"` (quoted) |
++| `location` | EO posts | `{ name, lat, lon }`, approximate scene centre |
++| `credit` | EO posts | Data attribution, e.g. "Contains modified Copernicus Sentinel data (2026)" |
++| `linkedin` | no | URL of the LinkedIn cross-post |
++
++Images live in `assets/img/<post-slug>/`, never hot-linked from LinkedIn or other sites.
+diff --git a/docs/templates/snapshot.md b/docs/templates/snapshot.md
+new file mode 100644
+index 0000000..4caff2f
+--- /dev/null
++++ b/docs/templates/snapshot.md
+@@ -0,0 +1,21 @@
++---
++# Copy to _posts/YYYY-MM-DD-short-slug.md and fill in. The docs/ folder is not published.
++title: Short, specific title
++date: 2026-01-31 12:00:00 +0100
++kind: snapshot                 # snapshot = one image + short caption
++categories: [Sentinel-2]       # primary mission: Sentinel-1/2/3/5P, CAMS, Landsat, ...
++tags: [fire, portugal]         # topics, places; secondary missions go here too
++image:                         # grid thumbnail + social preview; 1200x630 crop works best
++  path: /assets/img/slug/slug_banner.webp
++  alt: What the image shows, in one sentence
++acquired: "2026-01-30"         # one date, or a range "2026-01-28/2026-01-30"
++location: { name: "Place, Country", lat: 0.0, lon: 0.0 }
++credit: "Contains modified Copernicus Sentinel data (2026)"
++linkedin:                      # optional: URL of the LinkedIn cross-post
++comments: true
++---
++
++![What the image shows](/assets/img/slug/slug.webp)
++_One-line caption. Credits: Copernicus Sentinel-2_
++
++One to three sentences: what happened, where, when, and what to look at in the image.
+diff --git a/docs/templates/story.md b/docs/templates/story.md
+new file mode 100644
+index 0000000..8536401
+--- /dev/null
++++ b/docs/templates/story.md
+@@ -0,0 +1,27 @@
++---
++# Copy to _posts/YYYY-MM-DD-short-slug.md and fill in. The docs/ folder is not published.
++title: Story title
++date: 2026-01-31 12:00:00 +0100
++kind: story                    # story = short blog post, may use interactive components
++categories: [Sentinel-3]
++tags: [heatwave, mediterranean]
++image:
++  path: /assets/img/slug/slug_banner.webp
++  alt: What the hero image shows
++acquired: "2026-01-30"
++location: { name: "Place, Country", lat: 0.0, lon: 0.0 }
++credit: "Contains modified Copernicus Sentinel data (2026)"
++linkedin:
++comments: true
++---
++
++## Opening heading
++
++Lead paragraph: why this matters.
++
++![Main visual](/assets/img/slug/slug.webp)
++_Caption. Credits: Copernicus Sentinel-3_
++
++## What the data shows
++
++Explanation, method, caveats.
+-- 
+2.43.0
+

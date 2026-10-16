@@ -1,11 +1,13 @@
 ---
-title: and yet again
+title: And yet again
 date: 2024-07-25 16:30:00 +0200
 categories: [CAMS]
 tags: [dust, cloud, aod, model, forecast, calimas, greece, saharan, desert]
-image:
-  path: /assets/img/madeira/Madeira_S2_20240820.jpg
-  alt: August 2024 forest fire in Madeira, Portugal
+kind: snapshot
+acquired: "2024-06-14/2024-06-24"
+location: { name: "North Africa and Europe", lat: 40.0, lon: 15.0 }
+credit: "Generated using Copernicus Atmosphere Monitoring Service information (2024)"
+linkedin: https://www.linkedin.com/posts/lagoudakis_and-yet-again-the-animation-below-shows-activity-7211356947743182849-nj3d
 comments: true
 ---
 
@@ -17,7 +19,7 @@ This is the seventh(?) episode since December between Calimas and Med dust cloud
 📅 The CAMS aerosol optical depth (AOD) forecast data between 14 and 24 June 2024 show a very strong dust plume (AOD > 1) leaving the coasts of North Africa and covering big parts of central and eastern Europe. The event was followed with high air temperatures that exceeded 40 deg Celsius in southern Italy.
 
 
-![Sentinel-2](https://media.licdn.com/dms/image/v2/D4D22AQHaPJZ-pfJuXA/feedshare-shrink_800/feedshare-shrink_800/0/1719321474059?e=1744243200&v=beta&t=kKfyVCS4nuvT445tfaY3UNSq5e3y7q4lWHCVgFSr0RY)
+![CAMS dust AOD forecast animation](https://media.licdn.com/dms/image/v2/D4D22AQHaPJZ-pfJuXA/feedshare-shrink_800/feedshare-shrink_800/0/1719321474059?e=1744243200&v=beta&t=kKfyVCS4nuvT445tfaY3UNSq5e3y7q4lWHCVgFSr0RY)
 _Propagation of the big dust cloud between 14 and 24 June 2024. Credits: CAMS_
 
 

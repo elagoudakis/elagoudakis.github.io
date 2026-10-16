@@ -3,6 +3,11 @@ title: Sentinel-2C delivers
 date: 2024-09-18 11:53:00 +0200
 categories: [Sentinel-2]
 tags: [forest, fire, sentinel2, disaster, Spain, France, firstlight, first, MSI, multispectral]
+kind: story
+acquired: "2024-09-12/2024-09-14"
+location: { name: "Los Angeles, USA", lat: 33.7, lon: -117.5 }
+credit: "Contains modified Copernicus Sentinel data (2024)"
+linkedin: https://www.linkedin.com/posts/lagoudakis_sentinel-2c-delivers-less-than-2-weeks-activity-7242078295578603520-Vikf
 image:
   path: /assets/img/S2C_delivers/S2C_first_light_banner.jpg
   alt: Sentinel-2C delivers the first images less than 2 weeks after launch. Here, the famous Great Blue Hole in Belize.

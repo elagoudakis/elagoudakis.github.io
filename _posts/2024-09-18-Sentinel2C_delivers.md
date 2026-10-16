@@ -1,5 +1,6 @@
 ---
 title: Sentinel-2C delivers
+description: "Less than two weeks after launch, Sentinel-2C sends its first images: the Airport Fire near Los Angeles, Avignon to the Ebro Delta, and more."
 date: 2024-09-18 11:53:00 +0200
 categories: [Sentinel-2]
 tags: [forest, fire, sentinel2, disaster, Spain, France, firstlight, first, MSI, multispectral]
@@ -11,10 +12,8 @@ linkedin: https://www.linkedin.com/posts/lagoudakis_sentinel-2c-delivers-less-th
 image:
   path: /assets/img/S2C_delivers/S2C_first_light_banner.jpg
   alt: Sentinel-2C delivers the first images less than 2 weeks after launch. Here, the famous Great Blue Hole in Belize.
-comments: true
 ---
 
-## Sentinel-2C delivers
 
 Less than 2 weeks after its launch, the satellite has sent its first images to Earth. Following in the footsteps of its predecessors, this new addition is promising to become another key asset for the Copernicus programme.
 
@@ -35,8 +34,5 @@ _Part of a Sentinel-2C strip extending from Avignon in southern France to the Eb
 It is remarkable that the instrument is already performing exceptionally well even before receiving in-orbit calibration.
 
 Other images include a spectacular view of the Lighthouse Reef in Belize and a part of Andalusia in Spain. To view these and for more information on the mission, refer to the ESA website [__here__](https://shorturl.at/XtaQQ). 
-
-
-This article was also posted on my [__Linkedin__](https://www.linkedin.com/posts/lagoudakis_sentinel-2c-delivers-less-than-2-weeks-activity-7242078295578603520-Vikf?utm_source=share&utm_medium=member_desktop) account.
 
 **Credits:** modified Copernicus Sentinel-2 (2024), processed by ESA

@@ -1,0 +1,11 @@
+{%- comment -%} Formats `acquired`: "YYYY-MM-DD" or "YYYY-MM-DD/YYYY-MM-DD" {%- endcomment -%}
+{%- assign _p = include.value | split: "/" -%}
+{%- if _p.size == 2 -%}
+  {%- assign _sy = _p[0] | date: "%Y" -%}{%- assign _ey = _p[1] | date: "%Y" -%}
+  {%- assign _sm = _p[0] | date: "%m" -%}{%- assign _em = _p[1] | date: "%m" -%}
+  {%- if _sy == _ey and _sm == _em -%}{{ _p[0] | date: "%-d" }}–{{ _p[1] | date: "%-d %b %Y" }}
+  {%- elsif _sy == _ey -%}{{ _p[0] | date: "%-d %b" }} – {{ _p[1] | date: "%-d %b %Y" }}
+  {%- else -%}{{ _p[0] | date: "%b %Y" }} – {{ _p[1] | date: "%b %Y" }}
+  {%- endif -%}
+{%- elsif include.value -%}{{ include.value | date: "%-d %b %Y" }}
+{%- endif -%}

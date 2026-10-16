@@ -1,0 +1,6 @@
+{%- comment -%} 32.75, -17 -> 32.75°N 17.00°W {%- endcomment -%}
+{%- assign _la = include.lat | abs | round: 2 | append: "" | split: "." -%}
+{%- assign _lo = include.lon | abs | round: 2 | append: "" | split: "." -%}
+{%- assign _lad = _la[1] | default: "00" | append: "00" | slice: 0, 2 -%}
+{%- assign _lod = _lo[1] | default: "00" | append: "00" | slice: 0, 2 -%}
+{{- _la[0] }}.{{ _lad }}°{% if include.lat >= 0 %}N{% else %}S{% endif %} {{ _lo[0] }}.{{ _lod }}°{% if include.lon >= 0 %}E{% else %}W{% endif -%}

@@ -1,0 +1,12 @@
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>DScape is the personal site of {{ site.author.name }}, a remote sensing specialist making Earth observation visualizations.</p>
+    <nav class="footer-links" aria-label="Contact">
+      <a href="mailto:{{ site.author.email }}">Email</a>
+      <a href="{{ site.linkedin }}">LinkedIn</a>
+      <a href="{{ site.github_profile }}">GitHub</a>
+      <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    </nav>
+    <p class="footer-small">© {{ 'now' | date: '%Y' }} {{ site.author.name }}. Satellite data credits are given on each post.</p>
+  </div>
+</footer>

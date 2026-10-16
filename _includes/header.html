@@ -1,0 +1,18 @@
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="site-header wrap">
+  <a class="brand" href="{{ '/' | relative_url }}">
+    <span class="brand-name">{{ site.title }}</span>
+    <span class="brand-tagline">{{ site.tagline }}</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Latest</a>
+    <a href="{{ '/archives/' | relative_url }}"{% if page.url == '/archives/' %} aria-current="page"{% endif %}>Archive</a>
+    <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
+    <span class="icon-links">
+      <a class="icon-btn" href="{{ site.linkedin }}" aria-label="LinkedIn">{% include icon.html name="linkedin" %}</a>
+      <a class="icon-btn" href="{{ site.github_profile }}" aria-label="GitHub">{% include icon.html name="github" %}</a>
+      <a class="icon-btn" href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed">{% include icon.html name="rss" %}</a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-pressed="false" aria-label="Dark mode">{% include icon.html name="moon" %}</button>
+    </span>
+  </nav>
+</header>

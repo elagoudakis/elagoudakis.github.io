@@ -1,5 +1,6 @@
 ---
 title: A Hot Middle East Morning
+description: "Sentinel-3 land surface temperature over the Middle East on 12 June 2024, and why LST is not the same as air temperature."
 date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
 tags: [lst, temperature, europe, mediterranean]
@@ -11,7 +12,6 @@ linkedin: https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos
 image:
   path: /assets/img/a-hot-middle-east-morning/Middle_East_S3B_LST_20240612_v1_banner.jpg
   alt: relationship between LST and landscape features
-comments: true
 ---
 
 ### LST of the Middle East
@@ -34,7 +34,6 @@ The table below shows the differences between LST and AT at selected locations v
 
 ![AT vs LST readings](https://media.licdn.com/dms/image/v2/D4D12AQEokxeg4lbK5w/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1718283545833?e=1747267200&v=beta&t=IS7uRwCtKJRt-5qXzgGq0bMFqkZYNFql7T3WHILIWl8)
 
-
 ### Things to Consider When Interpreting LST Maps:
 
 * __Spatial resolution:__ The instrument takes one reading per unit area. For example, the SLSTR instrument of Sentinel-3 has a resolution (unit area) of 1 square kilometre. All the variations of temperature within this square kilometre are represented with one reading.
@@ -45,7 +44,5 @@ The table below shows the differences between LST and AT at selected locations v
 ###  **The Bottom Line:**
 
 LST quantifies the energy emitted by the ground at the time of image acquisition. It can also indicate perceived heat and potential discomfort, but it's not the same as AT and should be used with a clear disclaimer. Combining LST and AT data can help us understand how we experience heat and heatwaves in a warming world.
-
-This article was also posted on my [__Linkedin__](https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos-lagoudakis-2oekf/?trackingId=LUxMceQwTOqOoecJXAkrig%3D%3D) account.
 
 **Credits:** Copernicus Sentinel-3 for the LST data and Esri for the satellite base map

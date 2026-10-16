@@ -1,0 +1,51 @@
+---
+layout: default
+---
+{%- assign grid_posts = site.posts | where_exp: "p", "p.grid != false" -%}
+{%- assign hero = grid_posts.first -%}
+{%- if hero -%}
+<section class="hero" aria-labelledby="hero-title">
+  <a class="hero-image" href="{{ hero.url | relative_url }}" tabindex="-1" aria-hidden="true">
+    {%- if hero.image.path %}
+    <img src="{{ hero.image.path | relative_url }}" alt="" fetchpriority="high">
+    {%- else %}
+    <span class="tile-placeholder">Image coming soon</span>
+    {%- endif %}
+  </a>
+  <div class="hero-body">
+    <div class="hero-text">
+      <span class="label">Latest {{ hero.kind | default: "story" }}</span>
+      <h1 id="hero-title" class="hero-title"><a href="{{ hero.url | relative_url }}">{{ hero.title }}</a></h1>
+      <p class="lead">{{ hero.description | default: hero.excerpt | strip_html | truncate: 240 }}</p>
+    </div>
+    <dl class="data-list">
+      <dt>Mission</dt><dd>{{ hero.categories | first }}</dd>
+      {%- if hero.acquired %}<dt>Acquired</dt><dd>{% include acquired.html value=hero.acquired %}</dd>{% endif %}
+      {%- if hero.location.lat %}<dt>Centre</dt><dd>{% include coords.html lat=hero.location.lat lon=hero.location.lon %}</dd>{% endif %}
+    </dl>
+  </div>
+</section>
+{%- endif -%}
+
+{%- assign missions = "" | split: "" -%}
+{%- for p in grid_posts offset: 1 -%}{%- assign m = p.categories | first -%}{%- assign missions = missions | push: m -%}{%- endfor -%}
+{%- assign missions = missions | uniq | sort -%}
+
+<section class="section" aria-labelledby="recent-title">
+  <div class="section-head">
+    <h2 id="recent-title">Recent images</h2>
+    <div class="filters" role="group" aria-label="Filter by mission" data-filters hidden>
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      {%- for m in missions %}
+      <button type="button" class="chip" data-filter="{{ m }}" aria-pressed="false">{{ m }}</button>
+      {%- endfor %}
+    </div>
+  </div>
+  <ul class="grid" data-grid>
+    {%- for p in grid_posts offset: 1 %}
+    {% include tile.html post=p %}
+    {%- endfor %}
+  </ul>
+  <p class="empty" data-empty hidden>No posts for this mission yet.</p>
+  <p class="more"><a href="{{ '/archives/' | relative_url }}">See every post in the archive</a></p>
+</section>

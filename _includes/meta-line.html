@@ -1,0 +1,2 @@
+{%- assign _post = include.post -%}
+<span class="meta-line">{{ _post.categories | first }}{% if _post.acquired %} · {% include acquired.html value=_post.acquired %}{% endif %}{% if _post.location.name %} · {{ _post.location.name }}{% endif %}</span>

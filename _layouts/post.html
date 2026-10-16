@@ -1,0 +1,70 @@
+---
+layout: default
+---
+{%- assign mission = page.categories | first -%}
+<article class="post">
+  <a class="back-link" href="{{ '/' | relative_url }}">← All images</a>
+
+  {%- if page.image.path %}
+  <figure class="post-hero">
+    <img src="{{ page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}">
+    <figcaption>
+      <span>{{ page.image.caption | default: page.image.alt }}</span>
+      <a href="{{ page.image.full | default: page.image.path | relative_url }}">View full resolution</a>
+    </figcaption>
+  </figure>
+  {%- endif %}
+
+  <div class="post-columns">
+    <div class="post-main">
+      <span class="label">{{ page.kind | default: "story" | capitalize }}{% if mission %} from {{ mission }}{% endif %}</span>
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">Posted {{ page.date | date: "%-d %B %Y" }}</time></p>
+      <div class="prose">
+        {{ content }}
+      </div>
+      {%- if page.tags.size > 0 %}
+      <ul class="tags" aria-label="Tags">
+        {%- for t in page.tags %}
+        <li><a class="tag" href="{{ '/archives/' | relative_url }}?tag={{ t | downcase | uri_escape }}">{{ t | downcase }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+
+    {%- if page.acquired or page.location or page.credit or page.linkedin %}
+    <aside class="details" aria-label="Image details">
+      {%- if page.location.lat %}{% include locator.html lat=page.location.lat lon=page.location.lon name=page.location.name %}{% endif %}
+      <dl class="data-list">
+        {%- if mission %}<dt>Mission</dt><dd>{{ mission }}</dd>{% endif %}
+        {%- if page.acquired %}<dt>Acquired</dt><dd>{% include acquired.html value=page.acquired %}</dd>{% endif %}
+        {%- if page.location.name %}<dt>Location</dt><dd>{{ page.location.name }}{% if page.location.lat %}<br><span class="coords">{% include coords.html lat=page.location.lat lon=page.location.lon %}</span>{% endif %}</dd>{% endif %}
+        {%- if page.credit %}<dt>Credit</dt><dd>{{ page.credit }}</dd>{% endif %}
+      </dl>
+      <div class="actions">
+        {%- if page.linkedin %}
+        <a class="button button-accent" href="{{ page.linkedin }}">Discuss on LinkedIn</a>
+        {%- endif %}
+        <button class="button" type="button" data-copy-link>Copy link</button>
+      </div>
+    </aside>
+    {%- endif %}
+  </div>
+
+  {%- if page.previous or page.next %}
+  <nav class="post-nav" aria-label="More posts">
+    {%- if page.previous %}
+    <a class="post-nav-link" href="{{ page.previous.url | relative_url }}">
+      {%- if page.previous.image.path %}<img src="{{ page.previous.image.path | relative_url }}" alt="" loading="lazy">{% endif %}
+      <span><span class="meta-line">Previous</span><span class="post-nav-title">{{ page.previous.title }}</span></span>
+    </a>
+    {%- else %}<span></span>{% endif %}
+    {%- if page.next %}
+    <a class="post-nav-link post-nav-next" href="{{ page.next.url | relative_url }}">
+      <span><span class="meta-line">Next</span><span class="post-nav-title">{{ page.next.title }}</span></span>
+      {%- if page.next.image.path %}<img src="{{ page.next.image.path | relative_url }}" alt="" loading="lazy">{% endif %}
+    </a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+</article>

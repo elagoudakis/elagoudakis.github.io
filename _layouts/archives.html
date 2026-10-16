@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<section class="archive">
+  <h1 class="page-title">{{ page.title }}</h1>
+  <p class="filter-note" data-tag-note hidden>Showing posts tagged <strong data-tag-name></strong>. <a href="{{ '/archives/' | relative_url }}">Show all posts</a></p>
+  {%- assign by_year = site.posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+  {%- for y in by_year %}
+  <div class="archive-year" data-year>
+    <h2>{{ y.name }}</h2>
+    <ul class="archive-list">
+      {%- for p in y.items %}
+      <li data-tags="{{ p.tags | join: ' ' | downcase }}">
+        <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%-d %b" }}</time>
+        <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        <span class="meta-line">{{ p.categories | first }}, {{ p.kind | default: "story" }}</span>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+  {%- endfor %}
+</section>

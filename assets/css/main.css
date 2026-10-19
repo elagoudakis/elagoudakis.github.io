@@ -189,3 +189,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 .footer-small { flex-basis: 100%; font-size: 13px; }
 
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+
+/* Component: before/after compare ----------------------------------------- */
+.compare { margin: 32px 0; }
+.compare-stage { position: relative; overflow: hidden; border-radius: var(--radius); line-height: 0; user-select: none; touch-action: pan-y; }
+.prose .compare-stage img, .compare-stage img { display: block; width: 100%; margin: 0; border-radius: 0; }
+.compare-before { position: absolute; inset: 0; height: 100%; object-fit: cover; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+.compare-handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgb(0 0 0 / 0.35); pointer-events: none; }
+.compare-handle::after { content: ""; position: absolute; top: 50%; left: 50%; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px rgb(0 0 0 / 0.4);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath d='M14 12l-6 6 6 6M22 12l6 6-6 6' fill='none' stroke='%2314171B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.compare-label { position: absolute; top: 12px; padding: 4px 10px; border-radius: 99px; background: rgb(20 23 27 / 0.72); color: #fff; font: 12.5px/1.4 var(--font-mono); pointer-events: none; }
+.compare-label-before { left: 12px; }
+.compare-label-after { right: 12px; }
+.compare-range { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none; }
+.compare-stage:has(.compare-range:focus-visible) .compare-handle::after { outline: 3px solid var(--accent); outline-offset: 2px; }
+.compare:not(.is-ready) .compare-range { display: none; }
+.compare figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }

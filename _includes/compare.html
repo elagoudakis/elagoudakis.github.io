@@ -1,0 +1,32 @@
+{%- comment -%}
+Before/after swipe comparison.
+Usage:
+  {% include compare.html
+     before="/assets/img/post/a.webp" after="/assets/img/post/b.webp"
+     before_label="17 Aug 2024" after_label="20 Aug 2024"
+     alt="What both images show"
+     caption="Optional caption. Credits: ..."
+     start=50 %}
+Both images must cover the same area at the same size.
+{%- endcomment -%}
+{%- assign _start = include.start | default: 50 -%}
+{%- assign _bl = include.before_label | default: "Before" -%}
+{%- assign _al = include.after_label | default: "After" -%}
+<figure class="compare" data-compare style="--pos: {{ _start }}%">
+  <div class="compare-stage">
+    <img class="compare-after" src="{{ include.after | relative_url }}" alt="{{ _al | escape }}: {{ include.alt | escape }}" loading="lazy">
+    <img class="compare-before" src="{{ include.before | relative_url }}" alt="{{ _bl | escape }}: {{ include.alt | escape }}" loading="lazy">
+    <span class="compare-label compare-label-before" aria-hidden="true">{{ _bl }}</span>
+    <span class="compare-label compare-label-after" aria-hidden="true">{{ _al }}</span>
+    <span class="compare-handle" aria-hidden="true"></span>
+    <input class="compare-range" type="range" min="0" max="100" step="0.5" value="{{ _start }}"
+           aria-label="Swipe between {{ _bl | escape }} and {{ _al | escape }}">
+  </div>
+  {%- if include.caption %}
+  <figcaption>{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>
+  {%- endif %}
+</figure>
+{%- unless compare_script_loaded %}
+{%- assign compare_script_loaded = true %}
+<script src="{{ '/assets/js/compare.js' | relative_url }}" defer></script>
+{%- endunless %}

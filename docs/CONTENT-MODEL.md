@@ -19,3 +19,9 @@ Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`.
 Images live in `assets/img/<post-slug>/`, never hot-linked from LinkedIn or other sites.
 
 Snapshot posts show `image` as the large picture at the top, so the body only needs the caption text. Story posts can add more images in the body: an image followed by an `_italic line_` renders as image plus caption.
+
+## Interactive components
+
+Drop these into a post body. Live demos: [dscape.gr/lab/](https://dscape.gr/lab/).
+
+- **Before/after compare**: `{% include compare.html before="/assets/img/slug/a.webp" after="/assets/img/slug/b.webp" before_label="17 Aug 2024" after_label="20 Aug 2024" alt="What both images show" caption="Credits: ..." %}`. Both images must cover the same area at the same size; `start=30` moves the starting handle position.

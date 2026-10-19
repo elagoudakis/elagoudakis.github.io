@@ -19,7 +19,8 @@
   --accent: #F0A43A;        /* fills: active chips, primary button */
   --accent-ink: #111316;    /* text on accent fills */
   --accent-text: #9A5A00;   /* accent as text on the light ground */
-  --map-filter: none;
+  --globe-sea: #ECE9E3;
+  --globe-land: #C3BDB2;
 
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
@@ -37,7 +38,8 @@
   --muted: #A2AAB3;
   --line: #2C333B;
   --accent-text: #F0A43A;
-  --map-filter: brightness(0.42);
+  --globe-sea: #161B21;
+  --globe-land: #3A424B;
   color-scheme: dark;
 }
 
@@ -131,9 +133,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 .details { flex: 1 1 300px; align-self: flex-start; display: flex; flex-direction: column; gap: 22px; padding: 24px; border: 1px solid var(--line); border-radius: 6px; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .locator { margin: 0; }
-.locator-map { position: relative; }
-.locator-map img { display: block; width: 100%; filter: var(--map-filter); }
-.locator-dot { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent), 0 0 0 1px var(--accent-ink); }
+.locator-map { display: flex; justify-content: center; min-height: 220px; }
+.locator-map svg { display: block; max-width: 100%; height: auto; }
+.globe-sphere { fill: var(--globe-sea); }
+.globe-graticule { fill: none; stroke: var(--line); stroke-width: 0.6; }
+.globe-land { fill: var(--globe-land); }
+.globe-outline { fill: none; stroke: var(--line); stroke-width: 1.2; }
+.globe-halo { fill: color-mix(in srgb, var(--accent) 30%, transparent); }
+.globe-dot { fill: var(--accent); stroke: var(--accent-ink); stroke-width: 1; }
 .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 0; padding: 0; }
 .tag { display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 99px; font-size: 13px; }
 .tag:hover { border-color: var(--fg); text-decoration: none; }

@@ -1,9 +1,8 @@
-{%- assign _x = include.lon | plus: 180.0 | divided_by: 3.6 -%}
-{%- assign _y = 90.0 | minus: include.lat | divided_by: 1.8 -%}
-<figure class="locator">
-  <div class="locator-map">
-    <img src="{{ '/assets/img/world.svg' | relative_url }}" alt="" width="360" height="180" loading="lazy">
-    <span class="locator-dot" style="left: {{ _x | round: 2 }}%; top: {{ _y | round: 2 }}%" aria-hidden="true"></span>
-  </div>
-  <figcaption class="visually-hidden">Location map: {{ include.name }}</figcaption>
+<figure class="locator" data-locator data-lat="{{ include.lat }}" data-lon="{{ include.lon }}" data-name="{{ include.name | escape }}">
+  <div class="locator-map"></div>
+  <figcaption class="visually-hidden">Globe showing {{ include.name }}</figcaption>
 </figure>
+<span hidden data-land-url="{{ '/assets/data/land-110m.json' | relative_url }}"></span>
+<script src="{{ '/assets/js/lib/d3-array.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/lib/d3-geo.min.js' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/locator.js' | relative_url }}" defer></script>

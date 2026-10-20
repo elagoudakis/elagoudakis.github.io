@@ -7,7 +7,7 @@ kind: story                    # story = short blog post, may use interactive co
 categories: [Sentinel-3]
 tags: [heatwave, mediterranean]
 image:
-  path: /assets/img/slug/slug_banner.webp
+  path: /assets/img/slug/slug_banner.jpg   # JPG or PNG: LinkedIn previews may not show WebP
   alt: What the hero image shows
   caption: Short caption under the image (optional)
 acquired: "2026-01-30"

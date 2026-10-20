@@ -55,6 +55,13 @@
     });
   });
 
+  // Looping animations: autoplay (muted) unless the reader prefers reduced motion.
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('video[data-autoplay]').forEach(function (v) {
+    if (calm) return;
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+  });
+
   // Archive: ?tag=fire shows only posts with that tag.
   var note = document.querySelector('[data-tag-note]');
   if (note) {

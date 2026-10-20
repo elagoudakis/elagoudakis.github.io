@@ -1,0 +1,14 @@
+{%- comment -%}
+Looping animation (MP4, no sound). Plays automatically unless the reader prefers reduced motion.
+Usage:
+  {% include video.html src="/assets/img/slug/anim.mp4" poster="/assets/img/slug/poster.webp"
+     label="What the animation shows" caption="Optional caption. Credits: ..." %}
+{%- endcomment -%}
+<figure class="video">
+  <video src="{{ include.src | relative_url }}"{% if include.poster %} poster="{{ include.poster | relative_url }}"{% endif %}
+         controls muted loop playsinline preload="metadata" data-autoplay
+         aria-label="{{ include.label | escape }}"></video>
+  {%- if include.caption %}
+  <figcaption>{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>
+  {%- endif %}
+</figure>

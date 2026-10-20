@@ -7,7 +7,7 @@ kind: snapshot                 # snapshot = one image + short caption
 categories: [Sentinel-2]       # primary mission: Sentinel-1/2/3/5P, CAMS, Landsat, ...
 tags: [fire, portugal]         # topics, places; secondary missions go here too
 image:                         # grid thumbnail + social preview; 1200x630 crop works best
-  path: /assets/img/slug/slug_banner.webp
+  path: /assets/img/slug/slug_banner.jpg   # JPG or PNG: LinkedIn previews may not show WebP
   alt: What the image shows, in one sentence
   caption: Short caption under the image (optional)
 acquired: "2026-01-30"         # one date, or a range "2026-01-28/2026-01-30"

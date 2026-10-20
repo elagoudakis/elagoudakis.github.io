@@ -24,8 +24,7 @@ Fire pixels from the VIIRS instrument (Suomi-NPP satellite) have been overlaid t
 
 **Important**: The overlaid fire pixels represent data from the entire days, while the images are acquired in the mornings.
 
-![Sentinel-2](https://media.licdn.com/dms/image/v2/D4D22AQF7UMZpZyyDcQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1724429738336?e=1744243200&v=beta&t=g4t1eob-oHPp_GbPUhGhNAsM3S8XBEOw3tIPQTpG7lQ)
-_Propagation of the forest fire between 17 and 20 August 2024. Credits: USGS/Copernicus Sentinel-2_
+{% include compare.html before="/assets/img/madeira/madeira_20240817.webp" after="/assets/img/madeira/madeira_20240820.webp" before_label="17 Aug 2024 · Landsat-8" after_label="20 Aug 2024 · Sentinel-2" alt="The Madeira forest fire, with VIIRS active fire pixels in pink" caption="Propagation of the forest fire between 17 and 20 August 2024. Credits: USGS/Copernicus Sentinel-2" %}
 
 📅 As of 23 August, the fire had burned more than 5,700 hectares (57 sq km).
 

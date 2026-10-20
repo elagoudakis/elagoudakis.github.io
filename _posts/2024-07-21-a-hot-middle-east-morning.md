@@ -18,7 +18,7 @@ image:
 
 This land surface temperature (LST) image was acquired on **June 12, 2024**, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
-![Sentinel-3 LST](https://media.licdn.com/dms/image/v2/D4D12AQGdFg1AaUXP_g/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1718258448324?e=1747267200&v=beta&t=OWeNTY2BQJcifRpQ8-sU7n9t7EYxRPDz4GZ77ufT0Ac)
+![Sentinel-3 land surface temperature over the Middle East on 12 June 2024](/assets/img/a-hot-middle-east-morning/me_lst_20240612.webp)
 _LST of the Middle East, 12 June 2024, 10:50 am local time. Credits: Copernicus Sentinel-3_
 
 In many areas, the LST exceeds 60 degrees Celsius. As expected, water bodies, mountainous regions, and coastal areas have lower temperatures.
@@ -32,7 +32,17 @@ LST can fluctuate more dramatically than AT. For example, on a sunny day, land s
 
 The table below shows the differences between LST and AT at selected locations visible on the map.
 
-![AT vs LST readings](https://media.licdn.com/dms/image/v2/D4D12AQEokxeg4lbK5w/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1718283545833?e=1747267200&v=beta&t=IS7uRwCtKJRt-5qXzgGq0bMFqkZYNFql7T3WHILIWl8)
+| Location | LST (°C) | AT (°C) | Difference (°C) |
+| --- | ---: | ---: | ---: |
+| Amman, Jordan | 45 | 32 | +13 |
+| Cairo, Egypt | 46 | 31 | +15 |
+| Damascus, Syria | 46 | 33 | +13 |
+| Antakya, Türkiye | 37 | 37 | 0 |
+| Tabuk, Saudi Arabia | 54 | 33 | +21 |
+| Nicosia, Cyprus | 49 | 36 | +13 |
+{: .data-table}
+
+_Land surface temperature (LST) and air temperature (AT), 12 June 2024, 11:00 local time_
 
 ### Things to Consider When Interpreting LST Maps:
 

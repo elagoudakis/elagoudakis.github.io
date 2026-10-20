@@ -25,6 +25,7 @@ Snapshot posts show `image` as the large picture at the top, so the body only ne
 Drop these into a post body. Live demos: [dscape.gr/lab/](https://dscape.gr/lab/).
 
 - **Before/after compare**: `{% include compare.html before="/assets/img/slug/a.webp" after="/assets/img/slug/b.webp" before_label="17 Aug 2024" after_label="20 Aug 2024" alt="What both images show" caption="Credits: ..." %}`. Both images must cover the same area at the same size; `start=30` moves the starting handle position.
+- **Time series**: `{% include timeseries.html frames="/assets/img/slug/2021.webp, /assets/img/slug/2022.webp" labels="2021, 2022" alt="What every frame shows" caption="Credits: ..." interval=1500 start=0 %}`. Play/pause plus one button per frame (a slider above 12 frames). `badge=false` hides the corner label when the frames already show their date. Arrow keys step through frames.
 - **Looping animation (MP4)**: `{% include video.html src="/assets/img/slug/anim.mp4" poster="/assets/img/slug/poster.webp" label="What it shows" caption="Credits: ..." %}`. Muted, looping, autoplays unless the reader prefers reduced motion. Encode for the web first (H.264, about 1920 px wide), e.g. `ffmpeg -i in.mp4 -vf scale=1920:-2 -c:v libx264 -crf 27 -pix_fmt yuv420p -movflags +faststart -an out.mp4`.
 
 ## Drafts

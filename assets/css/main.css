@@ -217,3 +217,22 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 .prose table.data-table td:last-child { font-weight: 500; }
 .prose table.data-table + p em { display: block; font-style: normal; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }
 @media (max-width: 480px) { .prose table.data-table { display: block; overflow-x: auto; font-size: 14px; } }
+
+/* Component: time series ------------------------------------------------- */
+.timeseries { margin: 32px 0; }
+.timeseries-stage { position: relative; line-height: 0; }
+.prose .timeseries-stage img, .timeseries-stage img { display: block; width: 100%; margin: 0; border-radius: var(--radius); }
+.timeseries-badge { position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 99px; background: rgb(20 23 27 / 0.72); color: #fff; font: 12.5px/1.4 var(--font-mono); }
+.timeseries-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 12px; }
+.ts-play { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.ts-play:hover { border-color: var(--accent-ink); }
+.ts-icon-pause { display: none; }
+.timeseries.is-playing .ts-icon-play { display: none; }
+.timeseries.is-playing .ts-icon-pause { display: block; }
+.ts-steps { display: flex; flex-wrap: wrap; gap: 6px; }
+.ts-step { min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--fg); font: 14px var(--font-mono); cursor: pointer; }
+.ts-step:hover { border-color: var(--fg); }
+.ts-step[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.ts-range { flex: 1 1 200px; accent-color: var(--accent); min-height: 44px; }
+.ts-output { font: 14px var(--font-mono); min-width: 7ch; }
+.timeseries figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }

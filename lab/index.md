@@ -33,3 +33,14 @@ Usage in a post:
 ```
 
 Both images must show the same area at the same pixel size. Optional: `start=30` sets where the handle begins (percent from the left).
+
+## Time series
+
+Press play, pick a year, or use the arrow keys.
+
+{% include timeseries.html
+   frames="/assets/img/air-pollution-canada/co_s5p_july_2021.webp, /assets/img/air-pollution-canada/co_s5p_july_2022.webp, /assets/img/air-pollution-canada/co_s5p_july_2023.webp, /assets/img/air-pollution-canada/co_s5p_july_2024.webp"
+   labels="2021, 2022, 2023, 2024"
+   alt="July average carbon monoxide around the Arctic Circle from Sentinel-5P"
+   caption="Credits: Copernicus Sentinel-5P"
+   badge=false %}

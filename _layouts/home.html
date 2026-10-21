@@ -7,7 +7,7 @@ layout: default
 <section class="hero" aria-labelledby="hero-title">
   <a class="hero-image" href="{{ hero.url | relative_url }}" tabindex="-1" aria-hidden="true">
     {%- if hero.image.path %}
-    <img src="{{ hero.image.path | relative_url }}" alt="" fetchpriority="high">
+    <img src="{{ hero.image.path | relative_url }}" alt="" fetchpriority="high" sizes="(max-width: 1344px) 100vw, 1280px">
     {%- else %}
     <span class="tile-placeholder">Image coming soon</span>
     {%- endif %}

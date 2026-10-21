@@ -10,6 +10,9 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex">
+  {%- endif %}
   {% seo %}
   {%- unless page.image %}
   <meta property="og:image" content="{{ site.image | absolute_url }}">

@@ -32,6 +32,6 @@ _Part of a Sentinel-2C strip extending from Avignon in southern France to the Eb
 
 It is remarkable that the instrument is already performing exceptionally well even before receiving in-orbit calibration.
 
-Other images include a spectacular view of the Lighthouse Reef in Belize and a part of Andalusia in Spain. To view these and for more information on the mission, refer to the ESA website [__here__](https://shorturl.at/XtaQQ). 
+Other images include a spectacular view of the Lighthouse Reef in Belize and a part of Andalusia in Spain. To view these and for more information on the mission, visit [the ESA website](https://shorturl.at/XtaQQ). 
 
 **Credits:** modified Copernicus Sentinel-2 (2024), processed by ESA

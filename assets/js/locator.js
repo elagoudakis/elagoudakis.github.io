@@ -6,10 +6,15 @@
   if (!figs.length || !window.d3) return;
   var NS = 'http://www.w3.org/2000/svg';
 
-  fetch(document.querySelector('[data-land-url]').getAttribute('data-land-url'))
-    .then(function (r) { return r.json(); })
-    .then(function (land) { figs.forEach(function (fig) { draw(fig, land); }); })
-    .catch(function () { /* map is decorative; the location is also given as text */ });
+  // Wait until the page (and its main image) has loaded: the globe is secondary.
+  function start() {
+    fetch(document.querySelector('[data-land-url]').getAttribute('data-land-url'))
+      .then(function (r) { return r.json(); })
+      .then(function (land) { figs.forEach(function (fig) { draw(fig, land); }); })
+      .catch(function () { /* map is decorative; the location is also given as text */ });
+  }
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
 
   function el(name, attrs) {
     var e = document.createElementNS(NS, name);

@@ -20,7 +20,7 @@ longer sequences get a slider instead.
   <div class="timeseries-stage">
     {%- for f in _frames %}
     {%- assign _lab = _labels[forloop.index0] | strip | default: forloop.index %}
-    <img src="{{ f | strip | relative_url }}" alt="{{ _lab }}: {{ include.alt | escape }}" data-label="{{ _lab }}"{% unless forloop.index0 == _start %} hidden{% endunless %}{% if forloop.index0 > 0 %} loading="lazy"{% endif %}>
+    <img src="{{ f | strip | relative_url }}" alt="{{ _lab }}: {{ include.alt | escape }}" data-label="{{ _lab }}"{% unless forloop.index0 == _start %} hidden{% endunless %}{% unless forloop.index0 == _start %} loading="lazy"{% endunless %}>
     {%- endfor %}
     {%- unless include.badge == false %}
     <span class="timeseries-badge" aria-hidden="true" data-badge>{{ _labels[_start] | strip }}</span>

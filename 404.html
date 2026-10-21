@@ -1,0 +1,37 @@
+---
+layout: page
+title: Page not found
+permalink: /404.html
+sitemap: false
+noindex: true
+---
+
+<p>This page doesn’t exist, or it moved when the site was redesigned. Category and tag pages are now part of the <a href="/archives/">archive</a>.</p>
+
+
+{%- assign snaps = site.posts | where: "kind", "snapshot" | where_exp: "p", "p.image.path" -%}
+<figure class="lost-snapshot" data-lost hidden>
+  {%- assign first = snaps | first -%}
+  <a data-lost-link href="{{ first.url | relative_url }}"><img data-lost-img src="{{ first.image.path | relative_url }}" alt="{{ first.image.alt | default: first.title | escape }}" loading="lazy" sizes="(max-width: 800px) 100vw, 760px"></a>
+  <figcaption>While you’re here: <a data-lost-link data-lost-title href="{{ first.url | relative_url }}">{{ first.title }}</a></figcaption>
+</figure>
+<script>
+(function () {
+  var snaps = [
+    {%- for p in snaps %}
+    { url: {{ p.url | relative_url | jsonify }}, title: {{ p.title | jsonify }}, img: {{ p.image.path | relative_url | jsonify }}, alt: {{ p.image.alt | default: p.title | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ];
+  if (!snaps.length) return;
+  var s = snaps[Math.floor(Math.random() * snaps.length)];
+  var fig = document.querySelector('[data-lost]');
+  var img = fig.querySelector('[data-lost-img]');
+  img.removeAttribute('srcset'); img.removeAttribute('width'); img.removeAttribute('height');
+  img.src = s.img; img.alt = s.alt;
+  fig.querySelectorAll('[data-lost-link]').forEach(function (a) { a.href = s.url; });
+  fig.querySelector('[data-lost-title]').textContent = s.title;
+  fig.hidden = false;
+})();
+</script>
+
+<p><a href="/">Go to the latest images</a></p>

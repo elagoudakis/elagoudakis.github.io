@@ -28,3 +28,7 @@ assets/js/dist
 # Packages unzipped by mistake
 *.zip
 dscape-*/
+
+# Responsive image copies, generated at build time by tools/make_variants.py
+_variants/
+_data/image_variants.json

@@ -15,7 +15,7 @@ image:
   alt: relationship between LST and landscape features
 ---
 
-### LST of the Middle East
+## LST of the Middle East
 
 This land surface temperature (LST) image was acquired on **June 12, 2024**, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
@@ -24,7 +24,7 @@ _LST of the Middle East, 12 June 2024, 10:50 am local time. Credits: Copernicus 
 
 In many areas, the LST exceeds 60 degrees Celsius. As expected, water bodies, mountainous regions, and coastal areas have lower temperatures.
 
-### Differences with AT
+## Differences with AT
 
 Unlike air temperature (AT), which is measured at a specific height (usually 2 meters), LST represents the thermal radiation emitted from Earth's surface. 
 In simpler terms, it's how hot the ground would feel to your touch.  
@@ -45,14 +45,14 @@ The table below shows the differences between LST and AT at selected locations v
 
 _Land surface temperature (LST) and air temperature (AT), 12 June 2024, 11:00 local time_
 
-### Things to Consider When Interpreting LST Maps:
+## Things to consider when interpreting LST maps
 
 * __Spatial resolution:__ The instrument takes one reading per unit area. For example, the SLSTR instrument of Sentinel-3 has a resolution (unit area) of 1 square kilometre. All the variations of temperature within this square kilometre are represented with one reading.
 * __Temporal resolution:__ Sentinel-3 takes one reading per day. The mapped LST quantifies the temperature at the time of acquisition of the data.
 * __Conversion from radiance to LST:__ A series of algorithms that include calibration, conversion to brightness temperature, emissivity correction, atmospheric correction.. This process can introduce errors.
 * __Cloud filtering:__ Clouds can affect readings, so data filtering is crucial. Clouds are also not uniform. Thin clouds might escape filtering and affect the quality of the LST measurement.
 
-###  **The Bottom Line:**
+## The bottom line
 
 LST quantifies the energy emitted by the ground at the time of image acquisition. It can also indicate perceived heat and potential discomfort, but it's not the same as AT and should be used with a clear disclaimer. Combining LST and AT data can help us understand how we experience heat and heatwaves in a warming world.
 

@@ -33,3 +33,7 @@ Drop these into a post body. Live demos: [dscape.gr/lab/](https://dscape.gr/lab/
 ## Drafts
 
 Unfinished posts go in `_drafts/` (no date in the file name). They are not published. Preview them locally with `bundle exec jekyll serve --drafts`.
+
+## Image sizes (automatic)
+
+You only commit one version of each image. During every deploy, GitHub runs `tools/make_variants.py`, which makes 480, 800, 1200 and 1600 px copies, and `_plugins/responsive_images.rb` adds them to every `<img>` so phones download small files. Nothing to do by hand; local previews simply use the full-size images.

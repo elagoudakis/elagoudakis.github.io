@@ -4,6 +4,7 @@ title: Component lab
 permalink: /lab/
 description: Demo page for DScape's interactive components.
 sitemap: false
+noindex: true
 ---
 
 A test page for the interactive pieces that can be dropped into any post. It isn't linked from the menu.

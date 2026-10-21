@@ -2,7 +2,7 @@
 <li class="tile" data-mission="{{ _post.categories | first }}">
   <a href="{{ _post.url | relative_url }}">
     {%- if _post.image.path %}
-    <img src="{{ _post.image.path | relative_url }}" alt="{{ _post.image.alt | escape }}" loading="lazy">
+    <img src="{{ _post.image.path | relative_url }}" alt="{{ _post.image.alt | escape }}" loading="lazy" sizes="(max-width: 880px) 100vw, (max-width: 1344px) 50vw, 620px">
     {%- else %}
     <span class="tile-placeholder">Image coming soon</span>
     {%- endif %}

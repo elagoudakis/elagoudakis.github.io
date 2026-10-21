@@ -248,3 +248,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 .zoom-btn:hover { border-color: var(--fg); }
 .zoom-hint { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); margin-left: 6px; }
 .zoom figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+/* 404 ------------------------------------------------------------------ */
+.lost-snapshot { margin: 28px 0; }
+.lost-snapshot img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
+.lost-snapshot figcaption { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.lost-snapshot figcaption a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }

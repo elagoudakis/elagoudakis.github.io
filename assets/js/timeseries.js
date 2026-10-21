@@ -16,8 +16,11 @@
     var timer = null;
 
     controls.hidden = false;
-    // Preload every frame so stepping is instant.
-    imgs.forEach(function (im) { im.loading = 'eager'; });
+    // Preload the other frames once the page has finished loading, so stepping is instant
+    // without competing with the main image for bandwidth.
+    var preload = function () { imgs.forEach(function (im) { im.loading = 'eager'; }); };
+    if (document.readyState === 'complete') setTimeout(preload, 300);
+    else window.addEventListener('load', function () { setTimeout(preload, 300); });
 
     function show(n, announce) {
       i = (n + imgs.length) % imgs.length;

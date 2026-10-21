@@ -7,7 +7,7 @@ layout: default
 
   {%- if page.image.path %}
   <figure class="post-hero">
-    <img src="{{ page.image.hero | default: page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}">
+    <img src="{{ page.image.hero | default: page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}" fetchpriority="high" sizes="(max-width: 1344px) 100vw, 1280px">
     <figcaption>
       <span>{{ page.image.caption | default: page.image.alt }}</span>
       <a href="{{ page.image.full | default: page.image.hero | default: page.image.path | relative_url }}">View full resolution</a>
@@ -61,14 +61,14 @@ layout: default
   <nav class="post-nav" aria-label="More posts">
     {%- if page.previous %}
     <a class="post-nav-link" href="{{ page.previous.url | relative_url }}">
-      {%- if page.previous.image.path %}<img src="{{ page.previous.image.path | relative_url }}" alt="" loading="lazy">{% endif %}
+      {%- if page.previous.image.path %}<img src="{{ page.previous.image.path | relative_url }}" alt="" loading="lazy" sizes="150px">{% endif %}
       <span><span class="meta-line">Previous</span><span class="post-nav-title">{{ page.previous.title }}</span></span>
     </a>
     {%- else %}<span></span>{% endif %}
     {%- if page.next %}
     <a class="post-nav-link post-nav-next" href="{{ page.next.url | relative_url }}">
       <span><span class="meta-line">Next</span><span class="post-nav-title">{{ page.next.title }}</span></span>
-      {%- if page.next.image.path %}<img src="{{ page.next.image.path | relative_url }}" alt="" loading="lazy">{% endif %}
+      {%- if page.next.image.path %}<img src="{{ page.next.image.path | relative_url }}" alt="" loading="lazy" sizes="150px">{% endif %}
     </a>
     {%- endif %}
   </nav>

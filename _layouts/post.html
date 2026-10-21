@@ -34,7 +34,13 @@ layout: default
 
     {%- if page.acquired or page.location or page.credit or page.linkedin %}
     <aside class="details" aria-label="Image details">
-      {%- if page.location.lat %}{% include locator.html lat=page.location.lat lon=page.location.lon name=page.location.name %}{% endif %}
+      {%- comment -%} Snapshots always show the globe; stories only with `locator: true`. {%- endcomment -%}
+      {%- assign show_globe = false -%}
+      {%- if page.location.lat -%}
+        {%- if page.kind == "story" -%}{%- if page.locator == true -%}{%- assign show_globe = true -%}{%- endif -%}
+        {%- else -%}{%- assign show_globe = true -%}{%- endif -%}
+      {%- endif -%}
+      {%- if show_globe %}{% include locator.html lat=page.location.lat lon=page.location.lon name=page.location.name %}{% endif %}
       <dl class="data-list">
         {%- if mission %}<dt>Mission</dt><dd>{{ mission }}</dd>{% endif %}
         {%- if page.acquired %}<dt>Acquired</dt><dd>{% include acquired.html value=page.acquired %}</dd>{% endif %}

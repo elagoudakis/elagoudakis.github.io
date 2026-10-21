@@ -25,6 +25,8 @@ Run from the repo folder. Add `--draft` while you write: the post goes to `_draf
 | Frames over time | `--frames f2021.png f2022.png f2023.png --labels "2021,2022,2023"` |
 | An animation | `--video animation.mp4` (also MOV or GIF) |
 
+Snapshot or story: `--image` and `--video` make a snapshot, `--compare` and `--frames` make a story; `--kind snapshot|story` overrides this. Snapshots always show the locator globe, so they need `--geotiff` or `--lat/--lon`. For a story about one place, add `--locator` to show the globe too.
+
 Useful extras: `--acquired 2026-07-12` (or a range `2026-07-10/2026-07-12`), `--location "Ontario, Canada"`,
 `--geotiff scene.tif` (or `--lat 50.1 --lon -85.3`), `--tags smoke,wildfire`, `--description "..."`,
 `--banner other.png` (different banner image), `--credit "..."` (default depends on the mission),

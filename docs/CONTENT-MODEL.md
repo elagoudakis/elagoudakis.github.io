@@ -6,12 +6,13 @@ Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`.
 | Field | Required | Meaning |
 | --- | --- | --- |
 | `description` | yes | One sentence used for the homepage hero, search results and link previews |
-| `kind` | yes | `snapshot` (one image + short caption) or `story` (short blog post) |
+| `kind` | yes | `snapshot` (one image + short caption, about one place) or `story` (longer post, possibly several images and places). Shown as a badge on the homepage tiles, as the label above the post title, and in the archive |
 | `categories` | yes | Primary mission or data source, one value (Sentinel-2, CAMS, ...) |
 | `tags` | yes | Topics, places, secondary missions |
 | `image` | yes* | Hero image on the post, grid thumbnail and social preview: `path`, `alt`, optional `caption` and `full` (link to a full-resolution file). *Missing = placeholder tile and site default share image |
 | `acquired` | EO posts | Acquisition date `"YYYY-MM-DD"` or range `"YYYY-MM-DD/YYYY-MM-DD"` (quoted) |
 | `location` | EO posts | `{ name, lat, lon }`, approximate scene centre |
+| `locator` | stories | `true` shows the locator globe on a story. Snapshots always show it (they need `location` with `lat`/`lon`); stories hide it by default, because they often cover several places |
 | `credit` | EO posts | Data attribution, e.g. "Contains modified Copernicus Sentinel data (2026)" |
 | `linkedin` | no | URL of the LinkedIn cross-post; shows the "Discuss on LinkedIn" button |
 | `grid` | no | `false` keeps a post out of the homepage grid (it still appears in the archive) |

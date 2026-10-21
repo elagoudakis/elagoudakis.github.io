@@ -156,7 +156,7 @@ def site_path(repo, path):
 def make_post(title, *, mission, image=None, compare=None, frames=None, video=None,
               labels=None, zoom=False, banner=None, kind=None, tags=None,
               description="", acquired=None, location=None, lat=None, lon=None,
-              geotiff=None, credit=None, caption="", alt=None, linkedin=None,
+              geotiff=None, credit=None, caption="", alt=None, linkedin=None, locator=False,
               date=None, slug=None, draft=False, repo=".", force=False):
     """Create the post and its assets. Returns the path of the Markdown file."""
     repo = os.path.abspath(repo)
@@ -183,13 +183,16 @@ def make_post(title, *, mission, image=None, compare=None, frames=None, video=No
     md_path = os.path.join(repo, folder, md_name)
     if os.path.exists(md_path) and not force:
         raise SystemExit(f"Post already exists: {md_path} (use --force to overwrite)")
-    os.makedirs(img_dir, exist_ok=True)
-    os.makedirs(os.path.dirname(md_path), exist_ok=True)
 
     if geotiff and (lat is None or lon is None):
         centre = geotiff_centre(geotiff)
         if centre:
             lat, lon = centre
+    if kind == "snapshot" and (lat is None or lon is None):
+        raise SystemExit("Snapshots always show the locator globe: give --lat/--lon or --geotiff "
+                         "(or use --kind story).")
+    os.makedirs(img_dir, exist_ok=True)
+    os.makedirs(os.path.dirname(md_path), exist_ok=True)
 
     print(f"Creating '{title}' -> {os.path.relpath(md_path, repo)}")
     body = []
@@ -287,6 +290,8 @@ def make_post(title, *, mission, image=None, compare=None, frames=None, video=No
         if lat is not None and lon is not None:
             loc += [f"lat: {lat}", f"lon: {lon}"]
         fm.append("location: { " + ", ".join(loc) + " }")
+    if kind == "story" and locator and lat is not None:
+        fm.append("locator: true")
     if credit:
         fm.append(f"credit: {q(credit)}")
     if linkedin:
@@ -333,6 +338,8 @@ def main(argv=None):
     ap.add_argument("--lat", type=float)
     ap.add_argument("--lon", type=float)
     ap.add_argument("--geotiff", help="GeoTIFF to read the scene centre from (needs rasterio)")
+    ap.add_argument("--locator", action="store_true",
+                    help="stories: show the locator globe (snapshots always show it)")
     ap.add_argument("--credit", help="data credit (default depends on --mission)")
     ap.add_argument("--caption", default="")
     ap.add_argument("--alt", help="what the image shows (default: the title)")
@@ -347,7 +354,7 @@ def main(argv=None):
               video=a.video, labels=a.labels.split(","), zoom=a.zoom, banner=a.banner, kind=a.kind,
               tags=a.tags.split(","), description=a.description, acquired=a.acquired,
               location=a.location, lat=a.lat, lon=a.lon, geotiff=a.geotiff, credit=a.credit,
-              caption=a.caption, alt=a.alt, linkedin=a.linkedin, date=a.date, slug=a.slug,
+              caption=a.caption, alt=a.alt, linkedin=a.linkedin, locator=a.locator, date=a.date, slug=a.slug,
               draft=a.draft, repo=a.repo, force=a.force)
 
 

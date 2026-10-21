@@ -7,6 +7,7 @@ tags: [lst, temperature, europe, mediterranean]
 kind: story
 acquired: "2024-06-12"
 location: { name: "Middle East", lat: 31.5, lon: 37.0 }
+locator: true            # story about one place: show the globe
 credit: "Contains modified Copernicus Sentinel data (2024); base map: Esri"
 linkedin: https://www.linkedin.com/pulse/hot-middle-east-morning-emmanouil-manos-lagoudakis-2oekf/
 image:

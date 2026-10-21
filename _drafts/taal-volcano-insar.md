@@ -11,6 +11,7 @@ image:
   caption: "Taal Lake and Volcano Island after the eruption, Sentinel-2, [DATE]"
 acquired: "[YYYY-MM-DD/YYYY-MM-DD]"
 location: { name: "Taal volcano, Philippines", lat: 14.0, lon: 120.99 }
+locator: true            # story about one place: show the globe
 credit: "Contains modified Copernicus Sentinel data (2020)"
 linkedin:
 ---

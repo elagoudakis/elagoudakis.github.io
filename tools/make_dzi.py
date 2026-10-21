@@ -22,6 +22,41 @@ TILE = 254      # tile size without overlap (DZI convention)
 OVERLAP = 1
 
 
+def tile(img, output_dir, name="image", quality=80):
+    """Tile a PIL image into OUTPUT_DIR/NAME.dzi + NAME_files/. Returns the tile count."""
+    img = img.convert("RGB")
+    w, h = img.size
+    max_level = math.ceil(math.log2(max(w, h)))
+    tiles_dir = os.path.join(output_dir, f"{name}_files")
+    os.makedirs(tiles_dir, exist_ok=True)
+    count = 0
+    level_img = img
+    for level in range(max_level, -1, -1):
+        scale = 2 ** (max_level - level)
+        lw, lh = max(1, math.ceil(w / scale)), max(1, math.ceil(h / scale))
+        if level_img.size != (lw, lh):
+            level_img = level_img.resize((lw, lh), Image.LANCZOS)
+        ldir = os.path.join(tiles_dir, str(level))
+        os.makedirs(ldir, exist_ok=True)
+        for col in range(math.ceil(lw / TILE)):
+            for row in range(math.ceil(lh / TILE)):
+                x0 = max(0, col * TILE - OVERLAP)
+                y0 = max(0, row * TILE - OVERLAP)
+                x1 = min(lw, (col + 1) * TILE + OVERLAP)
+                y1 = min(lh, (row + 1) * TILE + OVERLAP)
+                level_img.crop((x0, y0, x1, y1)).save(
+                    os.path.join(ldir, f"{col}_{row}.jpg"), "JPEG", quality=quality, optimize=True)
+                count += 1
+    with open(os.path.join(output_dir, f"{name}.dzi"), "w") as f:
+        f.write(
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            f'<Image xmlns="http://schemas.microsoft.com/deepzoom/2008" Format="jpg" Overlap="{OVERLAP}" TileSize="{TILE}">\n'
+            f'  <Size Width="{w}" Height="{h}"/>\n'
+            '</Image>\n')
+    print(f"  zoom   {w}x{h} px, {max_level + 1} levels, {count} tiles")
+    return count
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("input")
@@ -40,37 +75,7 @@ def main():
     else:
         img = img.convert("RGB")
 
-    w, h = img.size
-    max_level = math.ceil(math.log2(max(w, h)))
-    tiles_dir = os.path.join(args.output_dir, f"{args.name}_files")
-    os.makedirs(tiles_dir, exist_ok=True)
-
-    count = 0
-    level_img = img
-    for level in range(max_level, -1, -1):
-        scale = 2 ** (max_level - level)
-        lw, lh = max(1, math.ceil(w / scale)), max(1, math.ceil(h / scale))
-        if level_img.size != (lw, lh):
-            level_img = level_img.resize((lw, lh), Image.LANCZOS)
-        ldir = os.path.join(tiles_dir, str(level))
-        os.makedirs(ldir, exist_ok=True)
-        for col in range(math.ceil(lw / TILE)):
-            for row in range(math.ceil(lh / TILE)):
-                x0 = max(0, col * TILE - OVERLAP)
-                y0 = max(0, row * TILE - OVERLAP)
-                x1 = min(lw, (col + 1) * TILE + OVERLAP)
-                y1 = min(lh, (row + 1) * TILE + OVERLAP)
-                level_img.crop((x0, y0, x1, y1)).save(
-                    os.path.join(ldir, f"{col}_{row}.jpg"), "JPEG", quality=args.quality, optimize=True)
-                count += 1
-
-    with open(os.path.join(args.output_dir, f"{args.name}.dzi"), "w") as f:
-        f.write(
-            '<?xml version="1.0" encoding="UTF-8"?>\n'
-            f'<Image xmlns="http://schemas.microsoft.com/deepzoom/2008" Format="jpg" Overlap="{OVERLAP}" TileSize="{TILE}">\n'
-            f'  <Size Width="{w}" Height="{h}"/>\n'
-            '</Image>\n')
-    print(f"{w}x{h} px, {max_level + 1} levels, {count} tiles -> {args.output_dir}")
+    tile(img, args.output_dir, args.name, args.quality)
 
 
 if __name__ == "__main__":

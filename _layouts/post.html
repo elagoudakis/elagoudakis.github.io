@@ -7,10 +7,10 @@ layout: default
 
   {%- if page.image.path %}
   <figure class="post-hero">
-    <img src="{{ page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}">
+    <img src="{{ page.image.hero | default: page.image.path | relative_url }}" alt="{{ page.image.alt | escape }}">
     <figcaption>
       <span>{{ page.image.caption | default: page.image.alt }}</span>
-      <a href="{{ page.image.full | default: page.image.path | relative_url }}">View full resolution</a>
+      <a href="{{ page.image.full | default: page.image.hero | default: page.image.path | relative_url }}">View full resolution</a>
     </figcaption>
   </figure>
   {%- endif %}

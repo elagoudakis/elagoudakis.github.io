@@ -123,7 +123,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 /* Post ------------------------------------------------------------------- */
 .back-link { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; color: var(--muted); }
 .post-hero { margin: 8px 0 0; }
-.post-hero img { display: block; width: 100%; border-radius: var(--radius); }
+.post-hero img { display: block; width: auto; max-width: 100%; max-height: 85vh; margin: 0 auto; border-radius: var(--radius); }
 .post-hero figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
 .post-hero figcaption a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
 .post-columns { display: flex; flex-wrap: wrap; gap: 48px 64px; padding-top: 44px; }

@@ -8,6 +8,7 @@ for post fields and components see `CONTENT-MODEL.md`.
 
 | Setting | What it controls |
 | --- | --- |
+| Footer text (disclaimer) | Edit `_includes/footer.html` directly |
 | `title`, `tagline`, `description` | Site name, the line next to the logo, and the default text for search results and link previews |
 | `url` | Must stay `https://dscape.gr`: it sets the canonical address search engines use |
 | `author.name`, `author.email` | Name in the footer and feed; `email` is the public contact address on the About page, the footer Email link and the RSS feed. Change it in this one place |
@@ -56,6 +57,8 @@ The domain is managed at your registrar. Records that must stay in place:
 | TXT | `@` | `google-site-verification=...` | Google Search Console (once verified) |
 
 Email records (MX, SPF TXT) for a future dscape address can be added alongside; they don't affect the site.
+**DNSSEC** is managed by the registrar. Before ever moving DNS to another provider (e.g. Cloudflare), turn DNSSEC off and wait a day, or the site and email stop resolving for many visitors. Adding or editing records is safe.
+
 In the repo's **Settings → Pages**, the custom domain is `dscape.gr` and **Enforce HTTPS** is ticked.
 
 ## Visitor statistics (GoatCounter)

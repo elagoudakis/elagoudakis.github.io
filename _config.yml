@@ -59,6 +59,9 @@ defaults:
 
 exclude:
   - docs
+  - tools
+  - "*.zip"
+  - "dscape-*"
   - README.md
   - LICENSE
   - Gemfile

@@ -48,6 +48,16 @@ _Sentinel-1 change detection combining pre- and post-eruption radar images, [DAT
 
 Volcano Island stands out: its surface was transformed by the thick, wet ash deposited during the eruption, while the rest of the region changed far less.
 
+## Explore the scene
+
+Zoom into the full-resolution Sentinel-2 image to see the ash-covered Volcano Island and the towns around the lake.
+
+{% include zoom.html
+   dzi="/assets/zoom/taal-s2-postevent/image.dzi"
+   preview="/assets/img/taal/taal_sentinel2_postevent.webp"
+   alt="Sentinel-2 view of Taal Lake, Volcano Island and Batangas after the January 2020 eruption"
+   caption="Sentinel-2, [DATE], 10 m resolution. Credits: Contains modified Copernicus Sentinel data (2020)" %}
+
 ## Why radar matters in a volcanic crisis
 
 During an eruption, clouds, ash plumes and darkness hide the volcano from optical satellites. Radar sees through all three, day and night. At Taal, satellite radar gave scientists and civil protection a view of the deformation during the peak of the crisis, when access to the volcano was impossible.

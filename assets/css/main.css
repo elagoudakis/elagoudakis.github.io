@@ -236,3 +236,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; letter-spa
 .ts-range { flex: 1 1 200px; accent-color: var(--accent); min-height: 44px; }
 .ts-output { font: 14px var(--font-mono); min-width: 7ch; }
 .timeseries figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+/* Component: deep zoom ---------------------------------------------------- */
+.zoom { margin: 32px 0; }
+.zoom-stage { position: relative; border-radius: var(--radius); overflow: hidden; background: color-mix(in srgb, var(--fg) 6%, transparent); line-height: 0; }
+.prose .zoom-preview, .zoom-preview { display: block; width: 100%; margin: 0; border-radius: 0; }
+.zoom-viewer { position: absolute; inset: 0; }
+.zoom.is-ready .zoom-preview { visibility: hidden; }
+.zoom-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.zoom-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--fg); font: 500 22px/1 var(--font-body); cursor: pointer; }
+.zoom-btn:hover { border-color: var(--fg); }
+.zoom-hint { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); margin-left: 6px; }
+.zoom figcaption { margin-top: 10px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; color: var(--muted); }

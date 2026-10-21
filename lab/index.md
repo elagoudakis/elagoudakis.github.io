@@ -44,3 +44,13 @@ Press play, pick a year, or use the arrow keys.
    alt="July average carbon monoxide around the Arctic Circle from Sentinel-5P"
    caption="Credits: Copernicus Sentinel-5P"
    badge=false %}
+
+## Deep zoom
+
+Double-click, pinch or use the buttons to zoom into the full 7015 × 4960 px scene.
+
+{% include zoom.html
+   dzi="/assets/zoom/taal-s2-postevent/image.dzi"
+   preview="/assets/img/taal/taal_sentinel2_postevent.webp"
+   alt="Sentinel-2 view of Taal Lake, Volcano Island and Batangas after the January 2020 eruption"
+   caption="Credits: Contains modified Copernicus Sentinel data (2020)" %}

@@ -7,6 +7,6 @@
       <a href="{{ site.github_profile }}">GitHub</a>
       <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
     </nav>
-    <p class="footer-small">© {{ 'now' | date: '%Y' }} {{ site.author.name }}. Satellite data credits are given on each post.</p>
+    <p class="footer-small">© {{ 'now' | date: '%Y' }} {{ site.author.name }}. Satellite data credits are given on each post.{% if site.goatcounter != "" %} Visits are counted with <a href="https://www.goatcounter.com">GoatCounter</a>: no cookies, no personal data.{% endif %}</p>
   </div>
 </footer>

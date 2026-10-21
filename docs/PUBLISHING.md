@@ -55,9 +55,21 @@ make_post(
 ## Then
 
 1. Open the new Markdown file and write the text (replace the [brackets]).
-2. Preview: `bundle exec jekyll serve --drafts`, or push and check the site.
-3. When ready: move a draft from `_drafts/` to `_posts/` and add the date in front of the file name
-   (`YYYY-MM-DD-slug.md`), then commit and push.
+2. Check it: publish and look at the live site, or keep it as a draft and preview locally
+   (setup in `MAINTENANCE.md`).
+3. Commit and push. Without `--draft` the post goes live right away.
+
+## Publishing a draft
+
+1. Replace every [bracket] placeholder. To find any left: `findstr /n "[" _drafts\my-post.md`
+   (lines with Markdown links and images contain brackets too; look for [DATE]-style placeholders).
+2. If the front matter has a `date:` line, set it to today. Posts dated in the future are not shown.
+3. Move it into `_posts/` with the date in front of the name (this also sets the address,
+   `dscape.gr/posts/my-post/`):
+   ```bash
+   git mv _drafts/my-post.md _posts/2026-10-21-my-post.md
+   ```
+4. `git commit -m "Publish: My post"` and `git push`. Images stay where they are.
 
 Images should be final 8-bit exports (for example from Photoshop). Adobe RGB and other colour
 profiles are converted to sRGB automatically so colours look right in browsers.

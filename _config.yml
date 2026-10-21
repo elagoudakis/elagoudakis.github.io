@@ -26,6 +26,10 @@ twitter:
 linkedin: https://www.linkedin.com/in/lagoudakis/
 github_profile: https://github.com/elagoudakis
 
+# Visitor statistics with GoatCounter (no cookies, no personal data).
+# Paste your GoatCounter code, e.g. "dscape" for dscape.goatcounter.com. Empty = off.
+goatcounter: ""
+
 # Default share image when a post has no `image`
 image: /assets/img/S2C_delivers/S2C_first_light_banner.jpg
 logo: /assets/img/avatar/digital_scape_logo_only.png

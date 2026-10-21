@@ -12,6 +12,7 @@ image:
   caption: Short caption under the image (optional)
 acquired: "2026-01-30"
 location: { name: "Place, Country", lat: 0.0, lon: 0.0 }
+locator: false                 # true = show the locator globe (for a story about one place)
 credit: "Contains modified Copernicus Sentinel data (2026)"
 linkedin:
 ---

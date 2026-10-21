@@ -1,7 +1,7 @@
 # DScape content model
 
 Every post uses the same front matter, so the homepage grid, filters and maps can be built from it.
-Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`.
+Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`. The export tool (`PUBLISHING.md`) fills all of this in for you.
 
 | Field | Required | Meaning |
 | --- | --- | --- |
@@ -9,13 +9,14 @@ Templates: `docs/templates/snapshot.md` and `docs/templates/story.md`.
 | `kind` | yes | `snapshot` (one image + short caption, about one place) or `story` (longer post, possibly several images and places). Shown as a badge on the homepage tiles, as the label above the post title, and in the archive |
 | `categories` | yes | Primary mission or data source, one value (Sentinel-2, CAMS, ...) |
 | `tags` | yes | Topics, places, secondary missions |
-| `image` | yes* | Hero image on the post, grid thumbnail and social preview: `path`, `alt`, optional `caption` and `full` (link to a full-resolution file). *Missing = placeholder tile and site default share image |
+| `image` | yes* | `path`: grid thumbnail, social preview and (by default) the picture at the top of the post; use a JPG or PNG, about 1200 × 630 or larger. `alt`: what it shows. Optional: `hero` (a different, uncropped image for the top of the post; the export tool sets this for snapshots), `caption`, `full` (link for "View full resolution"). *Missing = placeholder tile and site default share image |
 | `acquired` | EO posts | Acquisition date `"YYYY-MM-DD"` or range `"YYYY-MM-DD/YYYY-MM-DD"` (quoted) |
 | `location` | EO posts | `{ name, lat, lon }`, approximate scene centre |
 | `locator` | stories | `true` shows the locator globe on a story. Snapshots always show it (they need `location` with `lat`/`lon`); stories hide it by default, because they often cover several places |
 | `credit` | EO posts | Data attribution, e.g. "Contains modified Copernicus Sentinel data (2026)" |
 | `linkedin` | no | URL of the LinkedIn cross-post; shows the "Discuss on LinkedIn" button |
 | `grid` | no | `false` keeps a post out of the homepage grid (it still appears in the archive) |
+| `noindex` | no | `true` asks search engines not to list the page (used by the lab page) |
 
 Images live in `assets/img/<post-slug>/`, never hot-linked from LinkedIn or other sites.
 
@@ -32,7 +33,7 @@ Drop these into a post body. Live demos: [dscape.gr/lab/](https://dscape.gr/lab/
 
 ## Drafts
 
-Unfinished posts go in `_drafts/` (no date in the file name). They are not published. Preview them locally with `bundle exec jekyll serve --drafts`.
+Unfinished posts go in `_drafts/` (no date in the file name). They are not published. How to publish one: `PUBLISHING.md`. Local preview: `MAINTENANCE.md`.
 
 ## Image sizes (automatic)
 

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#1f5f8b">
+<title>POI Capture</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1d2329;--muted:#5d6873;--line:#dde2e7;--accent:#1f5f8b;--accent-ink:#fff;--ok:#2e7d32;--warn:#b26a00;--bad:#c62828;--r:12px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+header{position:sticky;top:0;z-index:5;background:var(--accent);color:var(--accent-ink);padding:12px 16px;font-weight:600;font-size:18px}
+main{padding:12px;max-width:640px;margin:0 auto}
+.view{display:none}.view.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+h2{font-size:15px;margin:0 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+label{display:block;font-size:14px;color:var(--muted);margin:10px 0 4px}
+input[type=text],input[type=number],input[type=search],select,textarea{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+textarea{min-height:72px;resize:vertical}
+button{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 14px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+button.danger{color:var(--bad);border-color:#f0c4c4}
+button.big{width:100%;padding:14px;font-size:17px}
+button:disabled{opacity:.5}
+.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+.row.tight>*{flex:0 0 auto}
+.fix{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.coords{font:600 20px/1.2 ui-monospace,Menlo,Consolas,monospace}
+.acc{font-weight:600;padding:4px 10px;border-radius:999px;background:#eee;white-space:nowrap}
+.acc.good{background:#e3f1e4;color:var(--ok)}.acc.mid{background:#fff1dc;color:var(--warn)}.acc.poor{background:#fde5e5;color:var(--bad)}
+.small{font-size:13px;color:var(--muted)}
+.locked{outline:2px solid var(--accent)}
+.photo-prev{margin-top:10px;display:none;align-items:center;gap:10px}
+.photo-prev img{width:84px;height:84px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:6}
+nav button{flex:1;border:0;border-radius:0;padding:10px 4px 12px;font-size:13px;color:var(--muted);background:none}
+nav button.on{color:var(--accent);font-weight:700;box-shadow:inset 0 3px 0 var(--accent)}
+nav svg{display:block;margin:0 auto 2px;width:22px;height:22px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:8px}
+.chip{flex:0 0 auto;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:14px;white-space:nowrap}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:6px;border:1px solid rgba(0,0,0,.15)}
+.grp{margin:14px 2px 6px;font-weight:700;font-size:14px;color:var(--muted)}
+.item{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px;margin-bottom:8px;cursor:pointer}
+.item .th{width:54px;height:54px;border-radius:8px;background:#eef1f4;flex:0 0 54px;object-fit:cover}
+.item .t{font-weight:600}.item .s{font-size:13px;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:30px 10px}
+.swatches{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.sw{width:32px;height:32px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);padding:0}
+.sw.on{box-shadow:0 0 0 3px var(--ink)}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+dialog{border:0;border-radius:16px;padding:0;width:min(560px,94vw);max-height:90vh}
+dialog::backdrop{background:rgba(0,0,0,.4)}
+dialog .in{padding:16px;overflow:auto;max-height:90vh}
+dialog img.full{width:100%;border-radius:10px;margin-top:8px}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#1d2329;color:#fff;padding:10px 16px;border-radius:10px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:20;max-width:90vw}
+#toast.on{opacity:1}
+.stat{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line)}
+.stat:last-child{border:0}
+</style>
+</head>
+<body>
+<header id="hdr">POI Capture</header>
+<main>
+
+<!-- CAPTURE -->
+<section id="v-capture" class="view on">
+  <div class="card" id="fixCard">
+    <div class="fix">
+      <div class="coords" id="fixCoords">Waiting for GPS…</div>
+      <span class="acc" id="fixAcc">–</span>
+      <div class="small" id="fixMeta">&nbsp;</div>
+      <button id="lockBtn" class="small">Lock</button>
+    </div>
+  </div>
+  <div class="card">
+    <label for="fName">Name</label>
+    <input id="fName" type="text" placeholder="e.g. Viewpoint over the lake" autocomplete="off">
+    <label for="fCat">Group</label>
+    <select id="fCat"></select>
+    <label for="fNote">Note (optional)</label>
+    <textarea id="fNote" placeholder="Anything worth remembering"></textarea>
+    <label>Photo (optional)</label>
+    <div class="row">
+      <button id="camBtn">Take photo</button>
+      <button id="galBtn">From gallery</button>
+    </div>
+    <input id="camIn" type="file" accept="image/*" capture="environment" hidden>
+    <input id="galIn" type="file" accept="image/*" hidden>
+    <div class="photo-prev" id="photoPrev"><img id="photoImg" alt=""><div><div class="small" id="photoInfo"></div><button id="photoRm" class="danger small">Remove</button></div></div>
+  </div>
+  <button class="primary big" id="saveBtn">Save POI</button>
+</section>
+
+<!-- LIST -->
+<section id="v-list" class="view">
+  <input id="search" type="search" placeholder="Search name or note" style="margin-bottom:8px">
+  <div class="chips" id="chips"></div>
+  <div id="list"></div>
+</section>
+
+<!-- GROUPS -->
+<section id="v-groups" class="view">
+  <div class="card">
+    <h2>New group</h2>
+    <input id="gName" type="text" placeholder="Group name, e.g. Field sites">
+    <div class="swatches" id="gSw"></div>
+    <button class="primary big" id="gAdd" style="margin-top:12px">Add group</button>
+  </div>
+  <div id="gList"></div>
+</section>
+
+<!-- DATA -->
+<section id="v-data" class="view">
+  <div class="card">
+    <h2>Export</h2>
+    <label for="xScope">Which points</label>
+    <select id="xScope"></select>
+    <div class="btns">
+      <button data-x="geojson">GeoJSON</button>
+      <button data-x="kml">KML</button>
+      <button data-x="csv">CSV</button>
+      <button data-x="zip" class="primary">ZIP (all + photos)</button>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;color:var(--ink)"><input type="checkbox" id="xShare"> Open share menu instead of downloading</label>
+    <p class="small">The ZIP holds all three formats, the photos and a restore file. It doubles as your backup.</p>
+  </div>
+  <div class="card">
+    <h2>Backup &amp; restore</h2>
+    <p class="small" style="margin-top:0">Points live only on this phone. Clearing Chrome's site data deletes them, so export a ZIP now and then.</p>
+    <button id="restoreBtn" class="big">Restore from ZIP…</button>
+    <input id="restoreIn" type="file" accept=".zip,application/zip" hidden>
+  </div>
+  <div class="card">
+    <h2>Photo size</h2>
+    <select id="photoSize">
+      <option value="800">Small – 800 px (~60–100 KB)</option>
+      <option value="1280">Medium – 1280 px (~150–250 KB)</option>
+      <option value="1920">Large – 1920 px (~350–550 KB)</option>
+    </select>
+    <p class="small">Applies to new photos. Originals are not kept by this app.</p>
+  </div>
+  <div class="card">
+    <h2>Storage</h2>
+    <div id="stats"></div>
+    <button id="persistBtn" style="margin-top:10px">Protect data from automatic cleanup</button>
+  </div>
+</section>
+</main>
+
+<nav id="nav">
+  <button data-v="capture" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Capture</button>
+  <button data-v="list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/></svg>Points</button>
+  <button data-v="groups"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>Groups</button>
+  <button data-v="data"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>Data</button>
+</nav>
+
+<dialog id="dlg"><div class="in" id="dlgIn"></div></dialog>
+<div id="toast"></div>
+
+<script>
+'use strict';
+/* ---------- helpers ---------- */
+const $=(s,el=document)=>el.querySelector(s);
+const $$=(s,el=document)=>[...el.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)).replace(/-/g,'').slice(0,16);
+const fmt=n=>n==null?'':Number(n).toFixed(6);
+const kb=b=>b<1048576?(b/1024).toFixed(0)+' KB':(b/1048576).toFixed(1)+' MB';
+const COLORS=['#1f5f8b','#2e7d32','#c62828','#b26a00','#6a1b9a','#00838f','#ad1457','#5d4037','#455a64','#827717'];
+let toastT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2200);}
+const ls={get:(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch{return d;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}}};
+
+/* ---------- IndexedDB ---------- */
+let db;
+const reqP=r=>new Promise((res,rej)=>{r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open('poi-capture',1);
+  r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('cats',{keyPath:'id'});d.createObjectStore('pois',{keyPath:'id'});d.createObjectStore('photos',{keyPath:'id'});};
+  r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
+const st=(n,m='readonly')=>db.transaction(n,m).objectStore(n);
+const getAll=n=>reqP(st(n).getAll());
+const getOne=(n,id)=>reqP(st(n).get(id));
+function putMany(n,objs){return new Promise((res,rej)=>{const t=db.transaction(n,'readwrite');const s=t.objectStore(n);objs.forEach(o=>s.put(o));t.oncomplete=res;t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error||new Error('Storage full?'));});}
+const put=(n,o)=>putMany(n,[o]);
+function delOne(n,id){return new Promise((res,rej)=>{const t=db.transaction(n,'readwrite');t.objectStore(n).delete(id);t.oncomplete=res;t.onerror=()=>rej(t.error);});}
+
+let cats=[],pois=[];
+async function reload(){cats=(await getAll('cats')).sort((a,b)=>a.name.localeCompare(b.name));pois=(await getAll('pois')).sort((a,b)=>b.ts-a.ts);}
+const catById=id=>cats.find(c=>c.id===id);
+const catName=id=>catById(id)?.name||'Ungrouped';
+const catColor=id=>catById(id)?.color||'#888888';
+
+/* ---------- navigation ---------- */
+let view='capture';
+function show(v){view=v;$$('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  $('#hdr').textContent={capture:'POI Capture',list:'Points',groups:'Groups',data:'Data'}[v];
+  if(v==='capture')startGPS();else stopGPS();
+  if(v==='list')renderList();if(v==='groups')renderGroups();if(v==='data')renderData();window.scrollTo(0,0);}
+$('#nav').onclick=e=>{const b=e.target.closest('button');if(b)show(b.dataset.v);};
+
+/* ---------- GPS ---------- */
+let watchId=null,live=null,locked=null,gpsErr=null;
+function startGPS(){if(!('geolocation' in navigator)){gpsErr='Geolocation not supported';renderFix();return;}
+  if(watchId!=null)return;
+  watchId=navigator.geolocation.watchPosition(p=>{gpsErr=null;live={lat:p.coords.latitude,lon:p.coords.longitude,acc:p.coords.accuracy,alt:p.coords.altitude,t:p.timestamp};renderFix();},
+    e=>{gpsErr=e.code===1?'Location permission denied – allow it in Chrome site settings':e.message||'GPS error';renderFix();},
+    {enableHighAccuracy:true,maximumAge:0,timeout:30000});}
+function stopGPS(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null;}}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopGPS();else if(view==='capture')startGPS();});
+function renderFix(){const f=locked||live;
+  $('#fixCard').classList.toggle('locked',!!locked);$('#lockBtn').textContent=locked?'Unlock':'Lock';$('#lockBtn').disabled=!live&&!locked;
+  if(!f){$('#fixCoords').textContent=gpsErr||'Waiting for GPS…';$('#fixAcc').textContent='–';$('#fixAcc').className='acc';$('#fixMeta').textContent=gpsErr?'':'Stand still in the open for a better fix';return;}
+  $('#fixCoords').textContent=fmt(f.lat)+', '+fmt(f.lon);
+  const a=Math.round(f.acc);$('#fixAcc').textContent='± '+a+' m';$('#fixAcc').className='acc '+(a<=10?'good':a<=30?'mid':'poor');
+  const age=Math.max(0,Math.round((Date.now()-f.t)/1000));
+  $('#fixMeta').textContent=(locked?'Locked · ':'Live · ')+(f.alt!=null?Math.round(f.alt)+' m alt · ':'')+(age<2?'now':age+' s ago');}
+setInterval(()=>{if(view==='capture')renderFix();},1000);
+$('#lockBtn').onclick=()=>{locked=locked?null:(live&&{...live});renderFix();};
+
+/* ---------- photo handling ---------- */
+let pending=null; // {full,thumb,w,h}
+function loadImg(blob){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('Cannot read image'));i.src=URL.createObjectURL(blob);});}
+async function shrink(img,max,q){const w=img.naturalWidth,h=img.naturalHeight,s=Math.min(1,max/Math.max(w,h));
+  const c=document.createElement('canvas');c.width=Math.round(w*s);c.height=Math.round(h*s);
+  const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(img,0,0,c.width,c.height);
+  const b=await new Promise(r=>c.toBlob(r,'image/jpeg',q));c.width=c.height=0;return {blob:b,w:Math.round(w*s),h:Math.round(h*s)};}
+async function processPhoto(file){const img=await loadImg(file);try{
+  const max=+ls.get('photoMax',1280);const f=await shrink(img,max,max<=800?0.72:0.68);const t=await shrink(img,160,0.6);
+  return {full:f.blob,thumb:t.blob,w:f.w,h:f.h};}finally{URL.revokeObjectURL(img.src);}}
+async function onPick(e){const file=e.target.files[0];e.target.value='';if(!file)return;
+  try{pending=await processPhoto(file);showPending();}catch(err){toast(err.message);}}
+function showPending(){const p=$('#photoPrev');if(!pending){p.style.display='none';return;}
+  const img=$('#photoImg');if(img.src)URL.revokeObjectURL(img.src);img.src=URL.createObjectURL(pending.thumb);
+  $('#photoInfo').textContent=pending.w+'×'+pending.h+' · '+kb(pending.full.size);p.style.display='flex';}
+$('#camBtn').onclick=()=>$('#camIn').click();$('#galBtn').onclick=()=>$('#galIn').click();
+$('#camIn').onchange=onPick;$('#galIn').onchange=onPick;
+$('#photoRm').onclick=()=>{pending=null;showPending();};
+
+/* ---------- capture form ---------- */
+function fillCatSelect(sel,selected,withNew){sel.innerHTML='<option value="">Ungrouped</option>'+cats.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')+(withNew?'<option value="__new">+ New group…</option>':'');sel.value=selected&&catById(selected)?selected:'';}
+async function newGroupPrompt(){const n=(prompt('Name of the new group')||'').trim();if(!n)return null;
+  const c={id:uid(),name:n,color:COLORS[cats.length%COLORS.length],created:Date.now()};await put('cats',c);await reload();return c.id;}
+$('#fCat').onchange=async e=>{if(e.target.value==='__new'){const id=await newGroupPrompt();fillCatSelect(e.target,id||ls.get('lastCat',''),true);}if(e.target.value!=='__new')ls.set('lastCat',e.target.value);};
+$('#saveBtn').onclick=async()=>{const f=locked||live;if(!f){toast('No GPS fix yet');return;}
+  if(f.acc>50&&!confirm('Accuracy is ± '+Math.round(f.acc)+' m. Save anyway?'))return;
+  const id=uid();const name=$('#fName').value.trim()||'POI '+(pois.length+1);
+  const poi={id,name,catId:$('#fCat').value||null,lat:+f.lat.toFixed(7),lon:+f.lon.toFixed(7),acc:Math.round(f.acc*10)/10,alt:f.alt==null?null:Math.round(f.alt*10)/10,ts:Date.now(),fixTs:f.t,note:$('#fNote').value.trim(),photo:pending?id:null};
+  $('#saveBtn').disabled=true;
+  try{if(pending)await put('photos',{id,full:pending.full,thumb:pending.thumb,w:pending.w,h:pending.h});await put('pois',poi);}
+  catch(err){toast('Save failed: '+(err?.message||err));$('#saveBtn').disabled=false;return;}
+  $('#saveBtn').disabled=false;await reload();
+  $('#fName').value='';$('#fNote').value='';pending=null;showPending();locked=null;renderFix();
+  toast('Saved “'+name+'”');if(navigator.storage?.persist&&!ls.get('askedPersist',false)){ls.set('askedPersist',true);navigator.storage.persist();}};
+
+/* ---------- list ---------- */
+let filter='all';const thumbs=new Map();
+async function thumbURL(id){if(thumbs.has(id))return thumbs.get(id);const p=await getOne('photos',id);if(!p)return null;const u=URL.createObjectURL(p.thumb);thumbs.set(id,u);return u;}
+function dropThumb(id){if(thumbs.has(id)){URL.revokeObjectURL(thumbs.get(id));thumbs.delete(id);}}
+function renderList(){
+  const counts={};pois.forEach(p=>{const k=p.catId&&catById(p.catId)?p.catId:'';counts[k]=(counts[k]||0)+1;});
+  const chip=(k,label,color)=>`<button class="chip ${filter===k?'on':''}" data-f="${k}">${color?`<span class="dot" style="background:${color}"></span>`:''}${esc(label)}</button>`;
+  $('#chips').innerHTML=chip('all','All ('+pois.length+')')+cats.map(c=>chip(c.id,c.name+' ('+(counts[c.id]||0)+')',c.color)).join('')+(counts['']?chip('','Ungrouped ('+counts['']+')','#888'):'');
+  const q=$('#search').value.trim().toLowerCase();
+  const sel=pois.filter(p=>{const k=p.catId&&catById(p.catId)?p.catId:'';return (filter==='all'||filter===k)&&(!q||p.name.toLowerCase().includes(q)||(p.note||'').toLowerCase().includes(q));});
+  if(!sel.length){$('#list').innerHTML=`<div class="empty">${pois.length?'No matching points.':'No points yet. Go to Capture and save your first one.'}</div>`;return;}
+  const groups=new Map();sel.forEach(p=>{const k=p.catId&&catById(p.catId)?p.catId:'';if(!groups.has(k))groups.set(k,[]);groups.get(k).push(p);});
+  const order=[...cats.map(c=>c.id),''].filter(k=>groups.has(k));
+  $('#list').innerHTML=order.map(k=>`<div class="grp"><span class="dot" style="background:${k?catColor(k):'#888'}"></span>${esc(k?catName(k):'Ungrouped')} · ${groups.get(k).length}</div>`+groups.get(k).map(p=>
+    `<div class="item" data-id="${p.id}">${p.photo?`<img class="th" data-ph="${p.photo}" alt="">`:'<div class="th"></div>'}<div style="min-width:0"><div class="t">${esc(p.name)}</div><div class="s">${fmt(p.lat)}, ${fmt(p.lon)} · ±${Math.round(p.acc)} m</div><div class="s">${new Date(p.ts).toLocaleString()}${p.note?' · '+esc(p.note.slice(0,40))+(p.note.length>40?'…':''):''}</div></div></div>`).join('')).join('');
+  $$('#list img[data-ph]').forEach(async im=>{const u=await thumbURL(im.dataset.ph);if(u)im.src=u;});}
+$('#chips').onclick=e=>{const b=e.target.closest('.chip');if(b){filter=b.dataset.f;renderList();}};
+$('#search').oninput=renderList;
+$('#list').onclick=e=>{const it=e.target.closest('.item');if(it)openPoi(it.dataset.id);};
+
+/* ---------- POI detail dialog ---------- */
+let fullURL=null,editPhoto=null; // editPhoto: undefined=unchanged, null=removed, obj=new
+async function openPoi(id){const p=pois.find(x=>x.id===id);if(!p)return;editPhoto=undefined;
+  const d=$('#dlgIn');d.innerHTML=`<h2>Edit point</h2>
+  <label>Name</label><input id="eName" type="text" value="${esc(p.name)}">
+  <label>Group</label><select id="eCat"></select>
+  <div class="row"><div><label>Latitude</label><input id="eLat" type="number" step="any" inputmode="decimal" value="${p.lat}"></div><div><label>Longitude</label><input id="eLon" type="number" step="any" inputmode="decimal" value="${p.lon}"></div></div>
+  <label>Note</label><textarea id="eNote">${esc(p.note)}</textarea>
+  <p class="small">Captured ${new Date(p.ts).toLocaleString()} · ±${p.acc} m${p.alt!=null?' · '+p.alt+' m alt':''}</p>
+  <div id="ePhoto"></div>
+  <div class="row" style="margin-top:8px"><button id="eCam">${p.photo?'Replace photo':'Add photo'}</button><button id="eRm" class="danger" ${p.photo?'':'hidden'}>Remove photo</button></div>
+  <input id="eIn" type="file" accept="image/*" capture="environment" hidden>
+  <div class="btns"><button id="eMap">Open in Maps</button><button id="eCopy">Copy coords</button><button id="eDel" class="danger">Delete</button><button id="eSave" class="primary">Save</button></div>
+  <button id="eClose" style="width:100%;margin-top:8px">Close</button>`;
+  fillCatSelect($('#eCat'),p.catId,true);
+  $('#eCat').onchange=async e=>{if(e.target.value==='__new'){const nid=await newGroupPrompt();fillCatSelect(e.target,nid||p.catId,true);}};
+  const showFull=async blob=>{if(fullURL){URL.revokeObjectURL(fullURL);fullURL=null;}
+    if(!blob){$('#ePhoto').innerHTML='';return;}fullURL=URL.createObjectURL(blob);$('#ePhoto').innerHTML=`<img class="full" src="${fullURL}" alt=""><div class="small">${kb(blob.size)}</div>`;};
+  if(p.photo){const ph=await getOne('photos',p.photo);if(ph)showFull(ph.full);}
+  $('#eCam').onclick=()=>$('#eIn').click();
+  $('#eIn').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;try{editPhoto=await processPhoto(f);showFull(editPhoto.full);$('#eRm').hidden=false;}catch(err){toast(err.message);}};
+  $('#eRm').onclick=()=>{editPhoto=null;showFull(null);$('#eRm').hidden=true;};
+  $('#eMap').onclick=()=>{location.href=`geo:${p.lat},${p.lon}?q=${p.lat},${p.lon}(${encodeURIComponent(p.name)})`;};
+  $('#eCopy').onclick=async()=>{try{await navigator.clipboard.writeText(p.lat+', '+p.lon);toast('Copied');}catch{toast(p.lat+', '+p.lon);}};
+  $('#eDel').onclick=async()=>{if(!confirm('Delete “'+p.name+'”?'))return;if(p.photo){await delOne('photos',p.photo);dropThumb(p.photo);}await delOne('pois',p.id);await reload();closeDlg();renderList();toast('Deleted');};
+  $('#eSave').onclick=async()=>{const lat=parseFloat($('#eLat').value),lon=parseFloat($('#eLon').value);
+    if(!(lat>=-90&&lat<=90&&lon>=-180&&lon<=180)){toast('Invalid coordinates');return;}
+    const cv=$('#eCat').value;const u={...p,name:$('#eName').value.trim()||p.name,catId:cv&&cv!=='__new'?cv:null,lat,lon,note:$('#eNote').value.trim()};
+    if(editPhoto===null&&p.photo){await delOne('photos',p.photo);dropThumb(p.photo);u.photo=null;}
+    if(editPhoto){if(p.photo)dropThumb(p.photo);await put('photos',{id:p.id,full:editPhoto.full,thumb:editPhoto.thumb,w:editPhoto.w,h:editPhoto.h});u.photo=p.id;}
+    await put('pois',u);await reload();closeDlg();renderList();toast('Saved');};
+  $('#eClose').onclick=closeDlg;$('#dlg').showModal();}
+function closeDlg(){$('#dlg').close();if(fullURL){URL.revokeObjectURL(fullURL);fullURL=null;}}
+
+/* ---------- groups ---------- */
+let gColor=COLORS[0];
+function swatches(el,cur,onPick){el.innerHTML=COLORS.map(c=>`<button class="sw ${c===cur?'on':''}" data-c="${c}" style="background:${c}" aria-label="${c}"></button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('.sw');if(!b)return;$$('.sw',el).forEach(x=>x.classList.toggle('on',x===b));onPick(b.dataset.c);};}
+function renderGroups(){gColor=COLORS[cats.length%COLORS.length];swatches($('#gSw'),gColor,c=>gColor=c);
+  $('#gList').innerHTML=cats.length?cats.map(c=>{const n=pois.filter(p=>p.catId===c.id).length;
+    return `<div class="item" data-g="${c.id}"><span class="dot" style="background:${c.color};width:18px;height:18px"></span><div style="flex:1"><div class="t">${esc(c.name)}</div><div class="s">${n} point${n===1?'':'s'}</div></div><span class="small">Edit</span></div>`;}).join('')
+    :'<div class="empty">No groups yet. Create one above, e.g. “Field sites” or “Restaurants”.</div>';}
+$('#gAdd').onclick=async()=>{const n=$('#gName').value.trim();if(!n){toast('Enter a name');return;}
+  if(cats.some(c=>c.name.toLowerCase()===n.toLowerCase())){toast('That group already exists');return;}
+  $('#gName').value='';await put('cats',{id:uid(),name:n,color:gColor,created:Date.now()});await reload();renderGroups();fillCatSelect($('#fCat'),ls.get('lastCat',''),true);toast('Group added');};
+$('#gList').onclick=e=>{const it=e.target.closest('[data-g]');if(it)openGroup(it.dataset.g);};
+function openGroup(id){const c=catById(id);let col=c.color;const n=pois.filter(p=>p.catId===id).length;
+  $('#dlgIn').innerHTML=`<h2>Edit group</h2><label>Name</label><input id="cName" type="text" value="${esc(c.name)}"><label>Colour</label><div class="swatches" id="cSw"></div>
+  <div class="btns"><button id="cDel" class="danger">Delete group</button><button id="cSave" class="primary">Save</button></div><button id="cClose" style="width:100%;margin-top:8px">Close</button>`;
+  swatches($('#cSw'),col,x=>col=x);
+  $('#cSave').onclick=async()=>{const nm=$('#cName').value.trim();if(!nm)return;await put('cats',{...c,name:nm,color:col});await reload();closeDlg();renderGroups();fillCatSelect($('#fCat'),ls.get('lastCat',''),true);};
+  $('#cDel').onclick=async()=>{if(!confirm(n?`Delete “${c.name}”? Its ${n} point(s) are kept and become Ungrouped.`:`Delete “${c.name}”?`))return;
+    const moved=pois.filter(p=>p.catId===id).map(p=>({...p,catId:null}));if(moved.length)await putMany('pois',moved);await delOne('cats',id);
+    if(filter===id)filter='all';await reload();closeDlg();renderGroups();fillCatSelect($('#fCat'),ls.get('lastCat',''),true);};
+  $('#cClose').onclick=closeDlg;$('#dlg').showModal();}
+
+/* ---------- export ---------- */
+const xmlEsc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+const iso=t=>new Date(t).toISOString();
+const photoPath=p=>p.photo?'photos/'+p.id+'.jpg':'';
+function slug(s){return String(s).normalize('NFKD').replace(/[^\w-]+/g,'_').replace(/^_+|_+$/g,'').slice(0,40)||'group';}
+function scoped(){const v=$('#xScope').value;return pois.filter(p=>v==='all'||(v===''?!(p.catId&&catById(p.catId)):p.catId===v)).sort((a,b)=>a.ts-b.ts);}
+function toGeoJSON(list){return JSON.stringify({type:'FeatureCollection',features:list.map(p=>({type:'Feature',id:p.id,
+  geometry:{type:'Point',coordinates:p.alt!=null?[p.lon,p.lat,p.alt]:[p.lon,p.lat]},
+  properties:{name:p.name,group:catName(p.catId),note:p.note||'',accuracy_m:p.acc,altitude_m:p.alt,time_utc:iso(p.ts),photo:photoPath(p)||null}}))},null,1);}
+function kmlColor(hex){const h=hex.replace('#','');return 'ff'+h.slice(4,6)+h.slice(2,4)+h.slice(0,2);}
+function toKML(list,withImgs){const keys=[...new Set(list.map(p=>p.catId&&catById(p.catId)?p.catId:''))];
+  const styles=keys.map(k=>`<Style id="s_${k||'none'}"><IconStyle><color>${kmlColor(k?catColor(k):'#888888')}</color><Icon><href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href></Icon></IconStyle></Style>`).join('');
+  const pm=p=>{const k=p.catId&&catById(p.catId)?p.catId:'';const desc=(p.note?xmlEsc(p.note).replace(/\n/g,'<br>')+'<br>':'')+`Captured ${iso(p.ts)} · ±${p.acc} m`+(withImgs&&p.photo?`<br><img src="${photoPath(p)}" width="400">`:'');
+    return `<Placemark><name>${xmlEsc(p.name)}</name><description><![CDATA[${desc}]]></description><styleUrl>#s_${k||'none'}</styleUrl><TimeStamp><when>${iso(p.ts)}</when></TimeStamp><ExtendedData><Data name="group"><value>${xmlEsc(catName(p.catId))}</value></Data><Data name="accuracy_m"><value>${p.acc}</value></Data>${p.photo?`<Data name="photo"><value>${photoPath(p)}</value></Data>`:''}</ExtendedData><Point><coordinates>${p.lon},${p.lat}${p.alt!=null?','+p.alt:''}</coordinates></Point></Placemark>`;};
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>POI Capture</name>${styles}`+
+    keys.map(k=>`<Folder><name>${xmlEsc(k?catName(k):'Ungrouped')}</name>${list.filter(p=>(p.catId&&catById(p.catId)?p.catId:'')===k).map(pm).join('')}</Folder>`).join('')+`</Document></kml>\n`;}
+function toCSV(list){const q=v=>{v=v==null?'':String(v);return /[",\n\r]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
+  return '﻿'+['id,name,group,lat,lon,accuracy_m,altitude_m,time_utc,note,photo',...list.map(p=>[p.id,p.name,catName(p.catId),p.lat,p.lon,p.acc,p.alt,iso(p.ts),p.note,photoPath(p)].map(q).join(','))].join('\r\n')+'\r\n';}
+
+/* minimal ZIP (store) writer + reader */
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u){let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRC[(c^u[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+async function makeZip(files){const enc=new TextEncoder(),parts=[],cen=[];let off=0;const d=new Date();
+  const tm=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1),dt=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate();
+  for(const f of files){let data=f.data;if(typeof data==='string')data=enc.encode(data);else if(data instanceof Blob)data=new Uint8Array(await data.arrayBuffer());
+    const nm=enc.encode(f.name),crc=crc32(data);
+    const l=new DataView(new ArrayBuffer(30));l.setUint32(0,0x04034b50,true);l.setUint16(4,20,true);l.setUint16(6,0x0800,true);l.setUint16(10,tm,true);l.setUint16(12,dt,true);l.setUint32(14,crc,true);l.setUint32(18,data.length,true);l.setUint32(22,data.length,true);l.setUint16(26,nm.length,true);
+    parts.push(l.buffer,nm,data);
+    const c=new DataView(new ArrayBuffer(46));c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint16(12,tm,true);c.setUint16(14,dt,true);c.setUint32(16,crc,true);c.setUint32(20,data.length,true);c.setUint32(24,data.length,true);c.setUint16(28,nm.length,true);c.setUint32(42,off,true);
+    cen.push(c.buffer,nm);off+=30+nm.length+data.length;}
+  const cs=cen.reduce((s,b)=>s+b.byteLength,0);const e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,cs,true);e.setUint32(16,off,true);
+  return new Blob([...parts,...cen,e.buffer],{type:'application/zip'});}
+async function readZip(blob){const b=new Uint8Array(await blob.arrayBuffer()),v=new DataView(b.buffer),dec=new TextDecoder();let e=-1;
+  for(let i=b.length-22;i>=Math.max(0,b.length-65557);i--)if(v.getUint32(i,true)===0x06054b50){e=i;break;}
+  if(e<0)throw new Error('Not a ZIP file');const n=v.getUint16(e+10,true);let p=v.getUint32(e+16,true);const out={};
+  for(let k=0;k<n;k++){if(v.getUint32(p,true)!==0x02014b50)throw new Error('Damaged ZIP');
+    const m=v.getUint16(p+10,true),cs=v.getUint32(p+20,true),nl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),lo=v.getUint32(p+42,true);
+    const name=dec.decode(b.subarray(p+46,p+46+nl));p+=46+nl+xl+cl;const s=lo+30+v.getUint16(lo+26,true)+v.getUint16(lo+28,true);const data=b.subarray(s,s+cs);
+    if(m===0)out[name]=data;else if(m===8&&'DecompressionStream' in window)out[name]=new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer());}
+  return out;}
+
+async function deliver(blob,name){const file=new File([blob],name,{type:blob.type});
+  if($('#xShare').checked&&navigator.canShare?.({files:[file]})){try{await navigator.share({files:[file],title:name});return;}catch(e){if(e.name==='AbortError')return;}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),10000);}
+$('#xShare').onchange=e=>ls.set('xShare',e.target.checked);
+$('#v-data').addEventListener('click',async e=>{const b=e.target.closest('[data-x]');if(!b)return;const list=scoped();if(!list.length){toast('No points to export');return;}
+  const v=$('#xScope').value;const base='poi_'+(v==='all'?'all':v===''?'ungrouped':slug(catName(v)))+'_'+new Date().toISOString().slice(0,16).replace(/[-:]/g,'').replace('T','-');
+  b.disabled=true;try{const x=b.dataset.x;
+    if(x==='geojson')await deliver(new Blob([toGeoJSON(list)],{type:'application/geo+json'}),base+'.geojson');
+    else if(x==='kml')await deliver(new Blob([toKML(list,false)],{type:'application/vnd.google-earth.kml+xml'}),base+'.kml');
+    else if(x==='csv')await deliver(new Blob([toCSV(list)],{type:'text/csv'}),base+'.csv');
+    else{const files=[{name:'pois.geojson',data:toGeoJSON(list)},{name:'pois.kml',data:toKML(list,true)},{name:'pois.csv',data:toCSV(list)}];
+      const catIds=new Set(list.map(p=>p.catId));
+      files.push({name:'poi-capture-backup.json',data:JSON.stringify({app:'poi-capture',version:1,exported:iso(Date.now()),cats:cats.filter(c=>catIds.has(c.id)),pois:list})});
+      for(const p of list)if(p.photo){const ph=await getOne('photos',p.photo);if(ph)files.push({name:photoPath(p),data:ph.full});}
+      await deliver(await makeZip(files),base+'.zip');}
+  }catch(err){toast('Export failed: '+err.message);}finally{b.disabled=false;}});
+
+/* ---------- restore ---------- */
+$('#restoreBtn').onclick=()=>$('#restoreIn').click();
+$('#restoreIn').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+  try{const z=await readZip(f);const j=z['poi-capture-backup.json'];if(!j)throw new Error('No backup data in this ZIP');
+    const data=JSON.parse(new TextDecoder().decode(j));const exist=new Set(pois.map(p=>p.id));
+    const fresh=data.pois.filter(p=>!exist.has(p.id));
+    if(!confirm(`Restore ${data.pois.length} point(s) and ${data.cats.length} group(s)? ${data.pois.length-fresh.length} already on this phone will be overwritten with the backup version.`))return;
+    const photoObjs=[];for(const p of data.pois){if(!p.photo)continue;const u=z['photos/'+p.id+'.jpg'];if(!u){p.photo=null;continue;}
+      const full=new Blob([u],{type:'image/jpeg'});const img=await loadImg(full);try{const t=await shrink(img,160,0.6);photoObjs.push({id:p.photo,full,thumb:t.blob,w:img.naturalWidth,h:img.naturalHeight});}finally{URL.revokeObjectURL(img.src);}dropThumb(p.photo);}
+    const catsNow=new Map(cats.map(c=>[c.name.toLowerCase(),c.id]));const remap={};
+    const newCats=data.cats.filter(c=>{const same=catsNow.get(c.name.toLowerCase());if(same&&same!==c.id){remap[c.id]=same;return false;}return true;});
+    data.pois.forEach(p=>{if(remap[p.catId])p.catId=remap[p.catId];});
+    if(newCats.length)await putMany('cats',newCats);if(photoObjs.length)await putMany('photos',photoObjs);await putMany('pois',data.pois);
+    await reload();renderData();fillCatSelect($('#fCat'),ls.get('lastCat',''),true);toast('Restored '+data.pois.length+' point(s)');
+  }catch(err){toast('Restore failed: '+err.message);}};
+
+/* ---------- data view ---------- */
+async function renderData(){const sel=$('#xScope'),cur=sel.value||'all';
+  sel.innerHTML=`<option value="all">All points (${pois.length})</option>`+cats.map(c=>`<option value="${c.id}">${esc(c.name)} (${pois.filter(p=>p.catId===c.id).length})</option>`).join('')+`<option value="">Ungrouped (${pois.filter(p=>!(p.catId&&catById(p.catId))).length})</option>`;
+  sel.value=[...sel.options].some(o=>o.value===cur)?cur:'all';
+  $('#photoSize').value=String(ls.get('photoMax',1280));$('#xShare').checked=ls.get('xShare',false);
+  const phs=await getAll('photos');const psize=phs.reduce((s,p)=>s+p.full.size+p.thumb.size,0);
+  let rows=[['Points',pois.length],['Groups',cats.length],['Photos',phs.length+' ('+kb(psize)+')']];
+  if(navigator.storage?.estimate){const e=await navigator.storage.estimate();rows.push(['App storage used',kb(e.usage||0)]);}
+  let persisted=false;if(navigator.storage?.persisted)persisted=await navigator.storage.persisted();rows.push(['Protected from cleanup',persisted?'Yes':'No']);
+  $('#persistBtn').hidden=persisted;
+  $('#stats').innerHTML=rows.map(r=>`<div class="stat"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');}
+$('#photoSize').onchange=e=>ls.set('photoMax',+e.target.value);
+$('#persistBtn').onclick=async()=>{const ok=await navigator.storage?.persist?.();toast(ok?'Data protected':'Chrome declined – install the app to the home screen and try again');renderData();};
+
+/* ---------- boot ---------- */
+(async()=>{try{db=await openDB();}catch(e){$('#fixCoords').textContent='Storage unavailable: '+e.message;return;}
+  await reload();fillCatSelect($('#fCat'),ls.get('lastCat',''),true);startGPS();renderFix();
+  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});})();
+</script>
+</body>
+</html>

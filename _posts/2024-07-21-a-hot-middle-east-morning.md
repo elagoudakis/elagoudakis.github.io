@@ -3,7 +3,7 @@ title: A Hot Middle East Morning
 description: "Sentinel-3 land surface temperature over the Middle East on 12 June 2024, and why LST is not the same as air temperature."
 date: 2024-07-21 19:12:00 +0200
 categories: [Sentinel-3]
-tags: [lst, temperature, europe, mediterranean]
+tags: [lst, temperature, middleeast, mediterranean, heat]
 kind: story
 acquired: "2024-06-12"
 location: { name: "Middle East", lat: 31.5, lon: 37.0 }
@@ -17,7 +17,7 @@ image:
 
 ## LST of the Middle East
 
-This land surface temperature (LST) image was acquired on **June 12, 2024**, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
+This land surface temperature (LST) image was acquired on **12 June 2024**, at 10:50 AM local time by the SLSTR instrument onboard the Copernicus Sentinel-3 satellite.
 
 ![Sentinel-3 land surface temperature over the Middle East on 12 June 2024](/assets/img/a-hot-middle-east-morning/me_lst_20240612.webp)
 _LST of the Middle East, 12 June 2024, 10:50 am local time. Credits: Copernicus Sentinel-3_

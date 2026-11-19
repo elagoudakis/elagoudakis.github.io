@@ -3,7 +3,7 @@ title: Devastating fire in Madeira, Portugal
 description: "Sentinel-2 images of the August 2024 Madeira forest fire spreading from Serra de Água, with VIIRS active fire pixels."
 date: 2024-08-24 16:30:00 +0200
 categories: [Sentinel-2]
-tags: [forest, fire, sentinel2, landsat, disaster, portugal, madeira]
+tags: [forest, fire, landsat, disaster, portugal, madeira]
 kind: snapshot
 acquired: "2024-08-17/2024-08-20"
 location: { name: "Madeira, Portugal", lat: 32.75, lon: -17.0 }

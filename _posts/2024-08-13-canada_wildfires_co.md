@@ -3,7 +3,7 @@ title: The (historic?) 2024 fire season
 description: "Sentinel-5P carbon monoxide around the Arctic Circle for July 2021 to 2024, as the boreal fire season gets under way."
 date: 2024-08-13 11:46:00 +0200
 categories: [Sentinel-5P]
-tags: [CO, arctic, canada, carbonmonoxide, S5P, airpollution, modis, fire]
+tags: [co, arctic, canada, carbonmonoxide, airpollution, modis, fire]
 kind: snapshot
 acquired: "2021-07-01/2024-07-31"
 location: { name: "Arctic Circle", lat: 62.0, lon: -115.0 }

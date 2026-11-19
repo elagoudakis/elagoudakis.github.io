@@ -4,7 +4,7 @@ description: "The first thermal and VIS/SWIR images from SLSTR on Copernicus Sen
 date: 2026-11-18 20:00:00 +0100
 kind: snapshot
 categories: [Sentinel-3]
-tags: [sentinel3, slstr, thermal, sst, lst, swir, fire, burnscar, firstlight, first, spain, france]
+tags: [slstr, thermal, sst, lst, swir, fire, burnscar, firstlight, spain, france]
 image:
   path: /assets/img/beyond-the-visible/beyond-the-visible_banner.jpg
   alt: "First SLSTR image from Sentinel-3C over southwestern Europe"

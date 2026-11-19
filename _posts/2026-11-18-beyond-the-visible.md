@@ -15,7 +15,7 @@ credit: "Contains modified Copernicus Sentinel data (2026)"
 linkedin: https://lnkd.in/p/dy72pUXP
 ---
 
-Following up on last month's OLCI release, today we published the very first thermal and VIS/SWIR images from the Copernicus Sentinel-3C radiometer, SLSTR, with the European Space Agency (ESA).
+Following up on the first light images of OLCI release, today ESA published the very first thermal and VIS/SWIR images from the Copernicus Sentinel-3C radiometer, SLSTR.
 
 Sentinel-3 systematically measures Earth's oceans, land, ice and atmosphere, providing data for Copernicus services. The mission's third satellite was launched on 15 September 2026, carrying four scientific instruments, one of which is the Sea and Land Surface Temperature Radiometer (SLSTR).
 
@@ -27,6 +27,6 @@ There is lots to see in this first set of images from southwestern Europe. In ad
 
 For more context, more images (including a look at Western Australia), and to try out the sliders, visit [the publication on ESA's portal](https://www.esa.int/articles/about-us/directorates/earth-observation-programmes/copernicus/sentinel-3/first-thermal-images-from-sentinel-3c-radiometer).
 
-Prepared for ESA Earth Observation, with a big thanks to the team back in the office.
+Images processed for ESA Earth Observation, with a big thanks to the team back in the office.
 
 **Credits:** Contains modified Copernicus Sentinel data (2026), processed by ESA

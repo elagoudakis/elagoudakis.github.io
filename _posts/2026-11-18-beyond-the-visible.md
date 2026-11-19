@@ -7,8 +7,8 @@ categories: [Sentinel-3]
 tags: [slstr, thermal, sst, lst, swir, fire, burnscar, firstlight, spain, france]
 image:
   path: /assets/img/beyond-the-visible/beyond-the-visible_banner.jpg
-  alt: "First SLSTR image from Sentinel-3C over southwestern Europe"
-  caption: "Sentinel-3C SLSTR first images over southwestern Europe"
+  alt: "Sentinel-3C SLSTR brightness temperature over southern Iberia and northern Morocco: warm land in red and orange, cooler sea in blue"
+  caption: "Water and land brightness temperature from SLSTR on Sentinel-3C, 2 November 2026"
 acquired: "2026-11-02"
 location: { name: "Southwestern Europe", lat: 42.0, lon: -2.0 }
 credit: "Contains modified Copernicus Sentinel data (2026)"

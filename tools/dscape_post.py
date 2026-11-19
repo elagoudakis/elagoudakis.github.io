@@ -157,8 +157,12 @@ def make_post(title, *, mission, image=None, compare=None, frames=None, video=No
               labels=None, zoom=False, banner=None, kind=None, tags=None,
               description="", acquired=None, location=None, lat=None, lon=None,
               geotiff=None, credit=None, caption="", alt=None, linkedin=None, locator=False,
-              date=None, slug=None, draft=False, repo=".", force=False):
-    """Create the post and its assets. Returns the path of the Markdown file."""
+              date=None, slug=None, draft=False, repo=".", force=False, text=None):
+    """Create the post and its assets. Returns the path of the Markdown file.
+
+    text: optional body text (Markdown) placed above the components; default is the
+    description, or a placeholder to replace.
+    """
     repo = os.path.abspath(repo)
     if not os.path.isfile(os.path.join(repo, "_config.yml")):
         raise SystemExit(f"Not a DScape repo (no _config.yml): {repo}")
@@ -298,12 +302,13 @@ def make_post(title, *, mission, image=None, compare=None, frames=None, video=No
         fm.append(f"linkedin: {linkedin}")
     fm.append("---")
 
-    text = "\n".join(fm) + "\n\n"
-    text += (description or "[Write one to three sentences: what, where, when, and what to look at.]") + "\n"
+    intro = (text or description
+             or "[Write one to three sentences: what, where, when, and what to look at.]").strip()
+    out = "\n".join(fm) + "\n\n" + intro + "\n"
     if body:
-        text += "\n" + "\n\n".join(body) + "\n"
+        out += "\n" + "\n\n".join(body) + "\n"
     with open(md_path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(text)
+        f.write(out)
 
     print("Done. Preview with:  bundle exec jekyll serve" + (" --drafts" if draft else ""))
     print("Publish with:        git add -A && git commit -m \"New post: " + title.replace('"', "'") + "\" && git push")
@@ -318,7 +323,7 @@ def include(name, **params):
 
 # --------------------------------------------------------------------------- CLI
 
-def main(argv=None):
+def build_parser():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("title")
     ap.add_argument("--mission", required=True, help="primary mission, e.g. Sentinel-2, CAMS")
@@ -349,13 +354,22 @@ def main(argv=None):
     ap.add_argument("--draft", action="store_true", help="write to _drafts/ (not published)")
     ap.add_argument("--repo", default=".", help="path to the site repo (default: current folder)")
     ap.add_argument("--force", action="store_true", help="overwrite an existing post")
-    a = ap.parse_args(argv)
-    make_post(a.title, mission=a.mission, image=a.image, compare=a.compare, frames=a.frames,
-              video=a.video, labels=a.labels.split(","), zoom=a.zoom, banner=a.banner, kind=a.kind,
-              tags=a.tags.split(","), description=a.description, acquired=a.acquired,
-              location=a.location, lat=a.lat, lon=a.lon, geotiff=a.geotiff, credit=a.credit,
-              caption=a.caption, alt=a.alt, linkedin=a.linkedin, locator=a.locator, date=a.date, slug=a.slug,
-              draft=a.draft, repo=a.repo, force=a.force)
+    return ap
+
+
+def args_to_kwargs(a):
+    """Parsed command-line arguments -> keyword arguments for make_post (title excluded)."""
+    return dict(mission=a.mission, image=a.image, compare=a.compare, frames=a.frames,
+                video=a.video, labels=a.labels.split(","), zoom=a.zoom, banner=a.banner, kind=a.kind,
+                tags=a.tags.split(","), description=a.description, acquired=a.acquired,
+                location=a.location, lat=a.lat, lon=a.lon, geotiff=a.geotiff, credit=a.credit,
+                caption=a.caption, alt=a.alt, linkedin=a.linkedin, locator=a.locator, date=a.date,
+                slug=a.slug, draft=a.draft, repo=a.repo, force=a.force)
+
+
+def main(argv=None):
+    a = build_parser().parse_args(argv)
+    make_post(a.title, **args_to_kwargs(a))
 
 
 if __name__ == "__main__":

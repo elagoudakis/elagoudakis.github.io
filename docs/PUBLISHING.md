@@ -52,6 +52,35 @@ make_post(
 )
 ```
 
+## Bringing in a LinkedIn post
+
+`tools/linkedin_post.py` makes a draft from one of your earlier LinkedIn posts. It keeps the
+original LinkedIn date and adds the "Discuss on LinkedIn" button. It also reuses the post text as
+the body, the hashtags as tags, and a "Credit:" line as the credit.
+
+1. On LinkedIn, open the post: `...` menu > **Copy link to post**. Select the post text, copy it
+   into a `.txt` file (e.g. `post.txt`, saved as UTF-8).
+2. Find the **original** image (your export or pipeline output). LinkedIn's copy is recompressed.
+3. Check what it will make, without writing anything:
+   ```bash
+   python tools/linkedin_post.py URL --text post.txt --dry-run
+   ```
+4. Run it with the usual options. Everything from the table above works (`--compare`, `--frames`, `--video`, `--zoom`, `--kind`, ...):
+   ```bash
+   python tools/linkedin_post.py URL --text post.txt --mission Sentinel-2 --image original.png ^
+       --lat 32.7 --lon -16.9 --location "Madeira, Portugal" --acquired 2024-08-20
+   ```
+5. Edit the draft in `_drafts/`: shorten the text if it reads like a LinkedIn post, check the
+   title and description, then publish it as below, **keeping its date**.
+
+Options: `--title` (default: the post's first line if short), `--description` (default: its first
+sentence), `--tags` (added to the hashtags), `--no-hashtags`, `--credit`, `--date` (if the URL has
+no post id), `--paste` (paste the text in the terminal instead of `--text`), `--publish` (skip the draft).
+
+No original image? `--fetch` tries to read the text and picture from the public LinkedIn page.
+This is experimental: LinkedIn often blocks it, and the picture is lower quality. Swap in
+the original later if you find it.
+
 ## Then
 
 1. Open the new Markdown file and write the text (replace the [brackets]).
@@ -64,6 +93,7 @@ make_post(
 1. Replace every [bracket] placeholder. To find any left: `findstr /n "[" _drafts\my-post.md`
    (lines with Markdown links and images contain brackets too; look for [DATE]-style placeholders).
 2. If the front matter has a `date:` line, set it to today. Posts dated in the future are not shown.
+   Exception: drafts made by `linkedin_post.py` keep their LinkedIn date; use that date in the file name too.
 3. Move it into `_posts/` with the date in front of the name (this also sets the address,
    `dscape.gr/posts/my-post/`):
    ```bash

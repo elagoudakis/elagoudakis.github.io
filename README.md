@@ -9,7 +9,7 @@ on every push to `main`.
 
 | Guide | Read it when you want to... |
 | --- | --- |
-| [`docs/PUBLISHING.md`](docs/PUBLISHING.md) | create a post from finished images with `tools/dscape_post.py`, or publish a draft |
+| [`docs/PUBLISHING.md`](docs/PUBLISHING.md) | create a post from finished images with `tools/dscape_post.py`, bring in a LinkedIn post with `tools/linkedin_post.py`, or publish a draft |
 | [`docs/CONTENT-MODEL.md`](docs/CONTENT-MODEL.md) | know what each post field does, or use a component (slider, time series, video, deep zoom) |
 | [`docs/MAINTENANCE.md`](docs/MAINTENANCE.md) | change site settings, understand deploys, check the domain, statistics, local preview, or fix a problem |
 | [`docs/templates/`](docs/templates/) | write a post by hand |
